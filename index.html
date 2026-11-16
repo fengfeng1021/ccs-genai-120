@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2f5bea">
-<title>CCS 生成式AI人工智慧核心能力 — 120 題題庫</title>
-<meta name="description" content="CCS Generative AI Foundations 生成式AI人工智慧核心能力 120 題題庫：逐題模式與整頁模式，含答案與解析。">
+<title>CCS 生成式AI人工智慧核心能力 — 80 題練習</title>
+<meta name="description" content="CCS Generative AI Foundations 80 題練習：點選答案立即對答，錯的題目直接看解析。">
 <style>
 :root{
   --bg:#f4f6fb; --card:#ffffff; --ink:#1a2130; --muted:#647089; --line:#e2e7f1;
@@ -24,66 +24,49 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--bg);color:var(--ink);
   font:16px/1.7 "Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
-  padding-bottom:calc(var(--navh) + var(--safe) + 8px);
-  overflow-x:hidden;
+  padding-bottom:calc(var(--navh) + var(--safe) + 8px);overflow-x:hidden;
 }
 body.list-mode{padding-bottom:24px}
 a{color:var(--brand)}
 
-/* ---------- 頂列 ---------- */
-.topbar{
-  position:sticky;top:0;z-index:30;background:rgba(244,246,251,.92);
+.topbar{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.93);
   backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--line);
-  padding:calc(env(safe-area-inset-top,0px) + 8px) 12px 8px;
-}
-@media (prefers-color-scheme: dark){ .topbar{background:rgba(14,18,25,.92)} }
+  padding:calc(env(safe-area-inset-top,0px) + 8px) 12px 8px;}
+@media (prefers-color-scheme: dark){ .topbar{background:rgba(14,18,25,.93)} }
 .topbar-in{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:10px}
 .brand{min-width:0;flex:1 1 auto}
-.brand h1{margin:0;font-size:1rem;font-weight:800;letter-spacing:.01em;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brand p{margin:1px 0 0;font-size:.72rem;color:var(--muted);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand h1{margin:0;font-size:1rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand p{margin:1px 0 0;font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .seg{display:flex;background:var(--brand-soft);border-radius:11px;padding:3px;flex:0 0 auto}
-.seg button{
-  font:inherit;font-size:.85rem;font-weight:600;border:0;background:transparent;color:var(--muted);
-  padding:7px 13px;border-radius:9px;cursor:pointer;min-height:38px
-}
+.seg button{font:inherit;font-size:.85rem;font-weight:600;border:0;background:transparent;color:var(--muted);
+  padding:7px 13px;border-radius:9px;cursor:pointer;min-height:38px}
 .seg button.on{background:var(--card);color:var(--brand);box-shadow:0 1px 3px rgba(20,30,60,.12)}
 
-/* ---------- 篩選列 ---------- */
 .filters{position:sticky;top:calc(env(safe-area-inset-top,0px) + 56px);z-index:29;
   background:var(--bg);border-bottom:1px solid var(--line);padding:8px 12px}
 .filters-in{max-width:960px;margin:0 auto}
 .chips{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .chips::-webkit-scrollbar{display:none}
-.filters.mini .chips{display:none}
-.filters.mini .tools{margin-top:0}
-.chip{
-  flex:0 0 auto;font:inherit;font-size:.82rem;border:1px solid var(--line);background:var(--card);
-  color:var(--muted);border-radius:999px;padding:6px 13px;min-height:36px;cursor:pointer;white-space:nowrap
-}
+body.list-mode .filters{position:static}
+body.quiz-mode #btnExp{display:none}
+.chip{flex:0 0 auto;font:inherit;font-size:.82rem;border:1px solid var(--line);background:var(--card);
+  color:var(--muted);border-radius:999px;padding:6px 13px;min-height:36px;cursor:pointer;white-space:nowrap}
 .chip.on{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600}
 .tools{display:flex;gap:7px;margin-top:8px;align-items:center;flex-wrap:wrap}
-.tools input[type=search]{
-  flex:1 1 120px;min-width:0;font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;
-  border:1px solid var(--line);background:var(--card);color:var(--ink);min-height:42px
-}
-.tbtn{
-  font:inherit;font-size:.8rem;border:1px solid var(--line);background:var(--card);color:var(--ink);
-  border-radius:10px;padding:8px 10px;min-height:42px;cursor:pointer;white-space:nowrap;flex:0 0 auto
-}
+.tools input[type=search]{flex:1 1 120px;min-width:0;font:inherit;font-size:16px;padding:9px 12px;
+  border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);min-height:42px}
+.tbtn{font:inherit;font-size:.8rem;border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:10px;padding:8px 10px;min-height:42px;cursor:pointer;white-space:nowrap;flex:0 0 auto}
+.tbtn.on{background:var(--brand);border-color:var(--brand);color:#fff}
 @media (max-width:520px){
   .tools input[type=search]{flex:1 1 100%;order:-1}
   .tbtn{flex:1 1 0;text-align:center}
   .seg button{padding:7px 11px}
 }
-.tbtn.on{background:var(--brand);border-color:var(--brand);color:#fff}
-.tbtn.ghost{background:transparent}
 
-/* ---------- 內容 ---------- */
 main{max-width:960px;margin:0 auto;padding:12px 12px 24px}
-.qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin:10px 0;
-  overflow-wrap:anywhere}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;
+  margin:10px 0;overflow-wrap:anywhere}
 .qhead{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:7px}
 .qid{font-weight:800;font-size:.85rem;color:var(--muted)}
 .tag{font-size:.71rem;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted)}
@@ -93,24 +76,15 @@ main{max-width:960px;margin:0 auto;padding:12px 12px 24px}
 .tag.z4{color:#a02558;border-color:#f1bcd1;background:#fdeef4}
 .ansline{margin-left:auto;font-size:.76rem;color:var(--muted);white-space:nowrap}
 .ansline b{color:var(--ok)}
-@media (max-width:520px){
-  .ansline{margin-left:0;flex-basis:100%;text-align:right;white-space:normal}
-}
+@media (max-width:520px){ .ansline{margin-left:0;flex-basis:100%;text-align:right;white-space:normal} }
 .qtext{font-size:1rem;font-weight:600;margin:2px 0 11px;white-space:pre-wrap;word-break:break-word}
 
-/* ---------- 選項 ---------- */
 .opts{display:flex;flex-direction:column;gap:8px}
-.opt{
-  display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;
-  border:1px solid var(--line);background:var(--card);color:var(--ink);
-  border-radius:11px;padding:11px 12px;font:inherit;font-size:.95rem;line-height:1.6;
-  cursor:pointer;min-height:46px
-}
-.opt:active{transform:scale(.995)}
-.opt .mk{
-  flex:0 0 auto;width:17px;height:17px;border-radius:50%;border:2px solid var(--muted);
-  margin-top:4px;position:relative
-}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;
+  border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:11px;
+  padding:11px 12px;font:inherit;font-size:.95rem;line-height:1.6;cursor:pointer;min-height:46px}
+.opt .mk{flex:0 0 auto;width:17px;height:17px;border-radius:50%;border:2px solid var(--muted);
+  margin-top:4px;position:relative}
 .opt .mk.cb{border-radius:5px}
 .opt .k{flex:0 0 auto;font-weight:700;color:var(--muted);min-width:1em}
 .opt .tx{flex:1 1 auto;word-break:break-word}
@@ -130,101 +104,92 @@ main{max-width:960px;margin:0 auto;padding:12px 12px 24px}
 .opt.wrong .mk{border-color:var(--bad);background:var(--bad)}
 .opt.correct .k{color:var(--ok)}
 .opt.wrong .k{color:var(--bad)}
+.opt[disabled]{cursor:default}
 .badge{flex:0 0 auto;font-size:.68rem;border-radius:999px;padding:1px 7px;margin-top:3px;white-space:nowrap}
 .badge.ok{color:var(--ok);border:1px solid #9ad7b4}
 .badge.no{color:var(--bad);border:1px solid #f0b4b4}
 .hint{font-size:.78rem;color:var(--muted);margin:8px 0 0}
 
-/* ---------- 子題 ---------- */
 .subq{border-top:1px dashed var(--line);padding:11px 0 2px}
 .st{font-size:.95rem;margin-bottom:8px;display:flex;gap:8px}
 .snum{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
   border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:.72rem;font-weight:700;margin-top:3px}
 .chips-ans{display:flex;gap:7px;flex-wrap:wrap}
-.ca{
-  font:inherit;font-size:.88rem;min-width:44px;min-height:42px;border-radius:10px;border:1px solid var(--line);
-  background:var(--card);color:var(--ink);padding:6px 13px;cursor:pointer
-}
+.ca{font:inherit;font-size:.88rem;min-width:44px;min-height:42px;border-radius:10px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);padding:6px 13px;cursor:pointer}
 .ca.sel{border-color:var(--brand);background:var(--brand-soft);color:var(--brand);font-weight:700}
 .ca.correct{border-color:#9ad7b4;background:var(--ok-soft);color:var(--ok);font-weight:700}
 .ca.wrong{border-color:#f0b4b4;background:var(--bad-soft);color:var(--bad);font-weight:700}
-.ca.long{flex:1 1 100%;text-align:left;min-height:44px;line-height:1.55;font-size:.88rem}
+.ca[disabled]{cursor:default}
 
-/* ---------- 解析 ---------- */
-details.exp,div.exp{
-  margin-top:11px;border-left:3px solid var(--brand);background:var(--brand-soft);
-  border-radius:0 10px 10px 0;padding:8px 12px;font-size:.9rem
-}
-details.exp summary{cursor:pointer;color:var(--brand);font-weight:700;font-size:.82rem;list-style:none}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.btn{font:inherit;font-size:.88rem;font-weight:600;border:1px solid var(--line);background:var(--card);
+  color:var(--ink);border-radius:10px;padding:10px 14px;min-height:44px;cursor:pointer}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;font-weight:500;color:var(--muted)}
+
+.verdict{display:flex;align-items:center;gap:8px;margin-top:11px;padding:10px 12px;border-radius:10px;
+  font-size:.9rem;font-weight:600}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.no{background:var(--bad-soft);color:var(--bad)}
+.verdict.skip{background:var(--warn-soft);color:var(--warn)}
+.verdict small{font-weight:400;opacity:.85}
+
+.exp{margin-top:10px;border-left:3px solid var(--brand);background:var(--brand-soft);
+  border-radius:0 10px 10px 0;padding:9px 13px;font-size:.9rem}
+.exp b{color:var(--brand)}
+.exp p{margin:6px 0}
+details.exp summary{cursor:pointer;color:var(--brand);font-weight:700;font-size:.84rem;list-style:none}
 details.exp summary::-webkit-details-marker{display:none}
 details.exp summary::before{content:"▸ ";font-size:.8rem}
 details.exp[open] summary::before{content:"▾ "}
-details.exp p,div.exp p{margin:6px 0}
+body.no-exp .exp{display:none}
 .note{color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:7px 10px;font-size:.85rem}
 
-/* ---------- 逐題模式 ---------- */
-#viewQuiz{display:none}
-body.quiz-mode #viewQuiz{display:block}
-body.quiz-mode #viewList{display:none}
-body.quiz-mode main{padding-bottom:calc(var(--navh) + var(--safe) + 28px)}
 .quizmeta{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);margin:2px 2px 8px}
 .quizmeta .bar{flex:1 1 auto;height:5px;border-radius:999px;background:var(--brand-soft);overflow:hidden}
 .quizmeta .bar>i{display:block;height:100%;background:var(--brand);width:0}
-.qnav{
-  position:fixed;left:0;right:0;bottom:0;z-index:31;
-  padding:8px 10px calc(8px + var(--safe));
-  background:linear-gradient(to top,var(--bg) 70%,rgba(244,246,251,0));
-  display:none
-}
+.quizmeta .score{margin-left:auto;white-space:nowrap}
+
+.qnav{position:fixed;left:0;right:0;bottom:0;z-index:31;padding:8px 10px calc(8px + var(--safe));
+  background:linear-gradient(to top,var(--bg) 70%,rgba(244,246,251,0));display:none}
 body.quiz-mode .qnav{display:block}
-.qnav-in{
-  max-width:960px;margin:0 auto;display:flex;gap:8px;align-items:center;
-  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;
-  box-shadow:0 -1px 12px rgba(20,30,60,.06)
-}
-.qnav button{
-  font:inherit;font-size:.86rem;font-weight:600;border:1px solid var(--line);background:var(--card);
-  color:var(--ink);border-radius:10px;padding:10px 12px;min-height:46px;cursor:pointer;flex:0 0 auto
-}
+.qnav-in{max-width:960px;margin:0 auto;display:flex;gap:8px;align-items:center;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 -1px 12px rgba(20,30,60,.06)}
+.qnav button{font:inherit;font-size:.86rem;font-weight:600;border:1px solid var(--line);background:var(--card);
+  color:var(--ink);border-radius:10px;padding:10px 12px;min-height:46px;cursor:pointer;flex:0 0 auto}
 .qnav button.main{background:var(--brand);border-color:var(--brand);color:#fff;flex:1 1 auto}
 .qnav button:disabled{opacity:.4}
 .qnav .cnt{flex:0 0 auto;font-size:.8rem;color:var(--muted);min-width:58px;text-align:center}
 
-/* ---------- 清單模式 ---------- */
+#viewQuiz{display:none}
+body.quiz-mode #viewQuiz{display:block}
+body.quiz-mode #viewList{display:none}
+body.quiz-mode main{padding-bottom:calc(var(--navh) + var(--safe) + 28px)}
 #viewList{display:none}
 body.list-mode #viewList{display:block}
 .zone-title{font-size:.98rem;margin:22px 2px 8px;padding-top:12px;border-top:1px solid var(--line);
   display:flex;align-items:baseline;gap:8px}
 .zone-title small{font-size:.74rem;color:var(--muted);font-weight:400}
 .empty{text-align:center;color:var(--muted);padding:40px 0;font-size:.9rem}
+.strip{font-size:.82rem;line-height:1.65;color:var(--muted);background:var(--brand-soft);
+  border-radius:10px;padding:9px 12px;margin:6px 0 10px}
+.strip b{color:var(--ink)}
 
-/* ---------- 顯示/隱藏 ---------- */
-body.no-ans .opt.correct{border-color:var(--line);background:transparent}
-body.no-ans .opt.correct .mk{border-color:var(--muted);background:transparent}
-body.no-ans .opt.correct .mk::after{display:none}
-body.no-ans .opt.correct .k{color:var(--muted)}
-body.no-ans .badge.ok{display:none}
-body.no-ans .ca.correct{border-color:var(--line);background:var(--card);color:var(--ink);font-weight:400}
-body.no-ans .ansline b{font-size:0}
-body.no-ans .ansline b::after{content:"（隱藏）";font-size:.76rem;color:var(--muted)}
-body.no-exp details.exp,body.no-exp div.exp{display:none}
-
-/* ---------- 桌機 ---------- */
 @media (min-width:760px){
   .brand h1{font-size:1.1rem}
   main{padding:16px 16px 28px}
   .qcard{padding:17px 19px}
   .seg button{padding:8px 18px}
 }
-
 @media print{
-  .topbar,.filters,.qnav{display:none!important}
+  .topbar,.filters,.qnav,.actions{display:none!important}
   body{background:#fff;padding:0}
   #viewQuiz{display:none!important}
   #viewList{display:block!important}
   .qcard{break-inside:avoid;box-shadow:none;border-color:#ccc}
-  details.exp{border-left-color:#888;background:#f7f7f7}
-  details.exp p{display:block}
+  .exp{background:#f7f7f7}
 }
 </style>
 </head>
@@ -232,7 +197,7 @@ body.no-exp details.exp,body.no-exp div.exp{display:none}
 <header class="topbar">
   <div class="topbar-in">
     <div class="brand">
-      <h1>CCS 生成式AI 120 題</h1>
+      <h1>CCS 生成式AI 80 題</h1>
       <p>Generative AI Foundations 題庫</p>
     </div>
     <div class="seg" role="tablist">
@@ -244,16 +209,14 @@ body.no-exp details.exp,body.no-exp div.exp{display:none}
 
 <div class="filters">
   <div class="filters-in">
-    <div class="chips" id="zoneChips">
-      <button class="chip on" data-zone="all">全部 120</button>
-      <button class="chip" data-zone="1">考綱一 30</button>
-      <button class="chip" data-zone="2">考綱二 32</button>
-      <button class="chip" data-zone="3">考綱三 28</button>
-      <button class="chip" data-zone="4">考綱四 30</button>
-    </div>
+    <div class="chips" id="zoneChips"><button class="chip on" data-zone="all">全部 80</button>
+      <button class="chip" data-zone="1">考綱1 19</button>
+      <button class="chip" data-zone="2">考綱2 22</button>
+      <button class="chip" data-zone="3">考綱3 18</button>
+      <button class="chip" data-zone="4">考綱4 21</button></div>
     <div class="tools">
       <input id="kw" type="search" placeholder="搜尋題目或關鍵字" autocomplete="off">
-      <button class="tbtn on" id="btnAns">答案</button>
+      <button class="tbtn" id="btnReset">重新開始</button>
       <button class="tbtn on" id="btnExp">解析</button>
       <button class="tbtn ghost" id="btnPrint" title="列印">列印</button>
     </div>
@@ -263,9 +226,9 @@ body.no-exp details.exp,body.no-exp div.exp{display:none}
 <main>
   <section id="viewQuiz">
     <div class="quizmeta">
-      <span id="qCounter">1 / 120</span>
+      <span id="qCounter">1 / 80</span>
       <span class="bar"><i id="qBar"></i></span>
-      <span id="qZone">考綱一</span>
+      <span class="score" id="qScore">已答 0 ・ 答對 0</span>
     </div>
     <div id="quizCard"></div>
   </section>
@@ -276,27 +239,25 @@ body.no-exp details.exp,body.no-exp div.exp{display:none}
 <div class="qnav">
   <div class="qnav-in">
     <button id="btnPrev" aria-label="上一題">上一題</button>
-    <span class="cnt" id="navCnt">1 / 120</span>
+    <span class="cnt" id="navCnt">1 / 80</span>
     <button id="btnNext" aria-label="下一題">下一題</button>
-    <button class="main" id="btnReveal">顯示答案</button>
+    <button class="main" id="btnReveal">看答案</button>
   </div>
 </div>
 
 <script>
-const DATA = [{"id":"1","zone":1,"type":"group","q":"下列關於生成式 AI 的敘述，正確為「O」，錯誤為「X」：","a":"","exp":"傳統搜尋引擎只索引既有內容；生成式 AI 底層是神經網路，能從無到有產出文字、圖像、程式碼。","src":"公開參考題庫（80 題）","subs":[{"q":"生成式 AI 僅根據搜尋條件提供結果清單。","a":"X"},{"q":"生成式 AI 使用神經網路來建立輸出。","a":"O"},{"q":"生成式 AI 可以建立文字、圖像和語音等新內容。","a":"O"}]},{"id":"2","zone":1,"type":"single","q":"你正在研究一系列資料，想要估算出 2200 年地球上的平均溫度。哪種類型的人工智慧最適合執行此任務？","a":"A","exp":"預測式 AI 專門用來估算未來趨勢，根據歷史氣候數據推算機率最高的未來數值。鑑別式用於分類；擴散式與 VAE 是圖像生成技術。","src":"公開參考題庫（80 題）","opts":["預測式 AI (Predictive AI)","鑑別式 AI (Discriminative AI)","擴散式 AI (Diffusion AI)","變分自動編碼器 (VAE)"]},{"id":"3","zone":1,"type":"single","q":"訓練大型語言模型（LLM）的基本流程包含：①收集資料集 ②預處理和清理資料 ③準備要輸入的資料 ④微調超參數。下列哪一個順序正確？","a":"A","exp":"訓練大型語言模型的基本流程為：①收集資料集 → ②預處理與清理資料 → ③準備要輸入的資料（分詞、格式化）→ ④微調超參數。資料一定是流程的起點，超參數調整發生在訓練階段，因此順序為 1→2→3→4。","src":"公開參考題庫（80 題）","note":"社群流通版本此題標示 B（4→3→2→1），屬重新詮釋；依官方考綱「基本流程」與實務訓練順序，正解為 A。","opts":["1→2→3→4","4→3→2→1","1→3→2→4","4→3→1→2"]},{"id":"4","zone":1,"type":"single","q":"作家想測試電影劇本在不同口音下的對話效果。應使用哪種 AI？","a":"A","exp":"將文字劇本具現化為「不同口音的聲音」，正是 TTS 的核心功能。現代 TTS 能模擬語速、情緒與地區口音。","src":"公開參考題庫（80 題）","opts":["基於文字生成語音（Text-to-Speech）","基於文字生成文字","基於語音生成文字","基於影音生成圖片"]},{"id":"5","zone":1,"type":"single","q":"製作以「思念」為主題的海報，包含社區成員的引言與動物詳細資訊。哪兩種生成式輸出類型最有幫助？","a":"A","exp":"引言是文字，動物資訊需要圖像呈現。靜態平面海報的核心是「圖文整合」，不需要語音或影片。","src":"公開參考題庫（80 題）","opts":["圖像和文字","圖像和語音","語音和影片","文字和影片"]},{"id":"6","zone":1,"type":"single","q":"你要建立客製化的 Microsoft Copilot 來完成特定任務。如何實現客製化？","a":"A","exp":"客製化 Copilot 無需編寫程式碼，只需在設定介面輸入 Instructions（指令）與 Knowledge Base（知識庫），即可賦予 AI 專屬能力。這稱為「封裝提示詞」。","src":"公開參考題庫（80 題）","opts":["向聊天機器人輸入一個指令和資訊，讓它準備好執行特定任務。","透過編寫一個電腦程式來指導。","必須對整個大型語言模型進行再訓練。","只有原公司才能生成。"]},{"id":"7","zone":1,"type":"single","q":"你想創作融合莎士比亞和 J.K. 羅琳風格的新作品，可存取兩位作家的全集。如何建立程式實現此目標？","a":"A","exp":"Transformer 架構的自注意力機制能捕捉文字間的長距離風格關聯。擴散模型用於圖像，CNN 擅長影像辨識，確定性演算法無法處理文學風格。","src":"公開參考題庫（80 題）","opts":["使用包含兩者作品的 Transformer 模型並部署 GPT。","對現有基於 Diffusion 的 GPT 進行微調。","實施卷積神經網路進行分類。","基於詞類相關的 AI 技術，開發確定性的演算法程式。"]},{"id":"8","zone":1,"type":"single","q":"你想為企業建立商標、商業計畫和使用宣言，希望使用現成的解決方案，不想自行建構。哪種 AI 平台最適合？","a":"A","exp":"ChatGPT 整合了 DALL-E 3（商標圖像）與 GPT-4（商業計畫文案），是最完整的一站式現成解決方案。Azure 是開發者平台，Stable Diffusion 與 Adobe Firefly 主要用於圖像生成。","src":"公開參考題庫（80 題）","opts":["ChatGPT","Stable Diffusion","Azure AI Studio","Adobe Firefly"]},{"id":"9","zone":1,"type":"group","q":"將正確的 AI 工具與它執行的特定任務進行配對：A.Adobe Express B.Azure AI Studio C.Canva D.ChatGPT","a":"","exp":"Adobe Express：社群圖像字體設計；Azure AI Studio：企業級多 AI 編排；Canva：設計與行銷素材；ChatGPT：全能對話 AI。","src":"公開參考題庫（80 題）","subs":[{"q":"允許生成圖像和獨具風格的字體並發佈到社群媒體。","a":"A"},{"q":"允許您關聯一系列 AI 來執行業務任務。","a":"B"},{"q":"可用於建立設計、簡報和行銷素材。","a":"C"},{"q":"可參與對話、回答問題或提供資訊。","a":"D"}]},{"id":"10","zone":1,"type":"group","q":"有關生成式 AI 的局限性敘述，正確為「O」，錯誤為「X」：","a":"","exp":"機密資料可能被用於訓練（X）；AI 輸出標準尚未統一（X）；幻覺（Hallucination）是 GenAI 天性，必須人工查核（O）。","src":"公開參考題庫（80 題）","subs":[{"q":"你可以假定輸入到任何 GPT 或 Copilot 中的機密資料將不會被用於訓練。","a":"X"},{"q":"存在公認的標準，規定了如何在行業環境中使用生成式 AI 的輸出。","a":"X"},{"q":"你需要對生成式 AI 工具輸出內容進行仔細事實審查，因為這些工具可能會編造內容。","a":"O"}]},{"id":"11","zone":1,"type":"single","q":"哪兩個選項準確提出生成式 AI 的特性？","a":"A,B","exp":"GenAI 底層是機率預測（B），且可透過 Fine-tuning 或 RLHF 重新訓練對齊偏好（A）。特徵工程屬於傳統機器學習，二元分類器與 GenAI 無關。","src":"公開參考題庫（80 題）","opts":["模型可以重新訓練，以便生成更符合預期目的的回覆","生成式 AI 在生成回應時，會利用預測來對回覆中的每個詞進行概率性的選擇。","生成式 AI 模型通常需特徵工程進行訓練","模型會建構一個 A/B 二元分類器，以供搜索演算法遍歷。"]},{"id":"12","zone":1,"type":"group","q":"下列描述屬於生成式 AI 為「O」，搜尋引擎為「X」：","a":"","exp":"GenAI 能合成新內容（O，O）；清楚標示來源是搜尋引擎的特徵（X）。","src":"公開參考題庫（80 題）","subs":[{"q":"能夠根據提示詞生成新的材料","a":"O"},{"q":"能夠生成在任何網站上都找不到的材料","a":"O"},{"q":"總是清楚地說明資訊在網路上的來源","a":"X"}]},{"id":"13","zone":1,"type":"single","q":"生成式 AI 為「生成一張桌子上擺放著一盞檯燈的圖像」所使用的流程順序：①使用雜訊生成隨機像素值 ②使用分詞解析 token ③使用擴散更改數值建立圖像 ④使用優化演算法使圖像更符合提示詞","a":"A","exp":"潛在擴散模型流程：先分詞理解文字（2）→ 投射隨機雜訊（1）→ 擴散去噪讓圖像浮現（3）→ 優化輸出最終圖像（4）。","src":"公開參考題庫（80 題）","opts":["2→1→3→4","1→2→3→4","4→3→2→1","2→3→1→4"]},{"id":"14","zone":1,"type":"single","q":"廣告公司員工要為客戶廣告生成歌詞，客戶提供產品規格文件，你要求客戶再提供產品圖片。你可以在 ChatGPT 中使用哪些輸入類型？","a":"A","exp":"ChatGPT 支援多模態輸入。文件（產品規格）+文字（創作方向）+圖像（視覺氛圍）三者組合能達成最佳創作效果。","src":"公開參考題庫（80 題）","opts":["文件檔案、文字和圖像","僅文件檔案和文字","僅文字和圖像","僅文字"]},{"id":"15","zone":1,"type":"single","q":"歌手向 AI 提交原創歌曲錄音，要求讓開頭部分聽起來有失真效果。使用了哪種 AI？","a":"A","exp":"輸入是錄音（語音），輸出是帶失真效果的錄音（語音）。這是 Speech-to-Speech（S2S）——保留原旋律但改變音質特徵，類似 AI 混音工具。","src":"公開參考題庫（80 題）","opts":["基於語音生成語音（Speech-to-Speech）","基於文字及語音生成文字","基於文字生成語音（Text-to-Speech）","基於文字生成文字"]},{"id":"16","zone":1,"type":"single","q":"服裝設計師希望客戶根據三個問題的回答生成 T 恤設計，設計完成後自動提交給他。如何用生成式 AI 實現？","a":"A","exp":"客製化 GPT（AI Agent）能透過對話收集需求，後台調用 DALL-E 生成設計，並透過 Actions（API）自動提交。單純發佈連結無法實現「自動提交」。","src":"公開參考題庫（80 題）","opts":["建立客製化 GPT。","輸入提示詞用以建構非互動式的網站。","在他的網站上發佈指向 DALL-E 的連結。","在他的網站上發佈指向 Adobe Firefly 的連結。"]},{"id":"17","zone":1,"type":"single","q":"你要製作輔導課業的 ChatGPT AI 工具，需要能對多個科目進行微調。哪種方法最有效？","a":"A","exp":"Transformer 模型具備強大泛化能力，透過 System Prompt 進行角色設定即可調整不同科目行為，無需從頭訓練（成本極高）。擴散模型用於圖像，不適合語言輔導。","src":"公開參考題庫（80 題）","opts":["客製的基於變換器（custom transformer-based）的模型，其中針對每個科目提供了具體指令","預設基於變換器（Transformer-based）的模型，其中針對每個科目提供了具體指令。","客製的基於擴散（custom diffusion-based）的模型","預設基於擴散（default diffusion-based）的模型"]},{"id":"18","zone":1,"type":"single","q":"軟體團隊要開發自動執行貸款申請流程的應用，需執行三項獨立任務（獲取信用記錄、評分、發送通知）。哪種 AI 工具適合通過多代理人工分工推動合作開發？","a":"A","exp":"LangChain 是 AI 編排框架，專門設計多 Agent 協作流程，讓數據在不同工具間流轉。Firefly/Stable Diffusion 是圖像工具，Copilot 是終端產品，都不適合後端邏輯開發。","src":"公開參考題庫（80 題）","opts":["LangChain","Adobe Firefly","Microsoft Copilot","Stable Diffusion"]},{"id":"19","zone":1,"type":"group","q":"下列針對每個場景，結果可能為「O」，不可能為「X」：","a":"","exp":"1.否定指令處理較弱，AI 可能聚焦在「紅色」關鍵字，將畫面變黑白（O）。2.AI 不可能生成它從未見過的未發佈機密（X）。3.相同提示可能產生不同輸出，這是非確定性（Non-determinism）（O）。","src":"公開參考題庫（80 題）","subs":[{"q":"你發出消除紅色的圖像提示詞，AI 生成了黑白圖像。","a":"O"},{"q":"你用公開資訊的結構完善提示詞生成銷售簡報，結果包含未發佈的公司機密資訊。","a":"X"},{"q":"你多次用相同提示詞要求時鐘圖，時鐘顯示的時間有時不一樣。","a":"O"}]},{"id":"20","zone":2,"type":"group","q":"您正在開啟新產品的行銷活動…將每個提示詞類別與提示詞片段進行配對：","a":"","exp":"高品質提示詞的四個關鍵要素：角色 (Role) 賦予身分；指令 (Instruction) 明確任務；上下文 (Context) 提供背景數據；約束條件 (Constraints) 規定語氣與限制。","src":"公開參考題庫（80 題）","subs":[{"q":"「你是一位在目標受眾領域有著豐富經驗的高級行銷經理」","a":"A","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]},{"q":"「根據客戶對新產品的喜好程度，為他們生成郵件」","a":"B","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]},{"q":"「我們需要為清單 [連結] 中的每個人生成電子郵件」","a":"C","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]},{"q":"「語態上應模仿一個有好消息要告訴你的摯友」","a":"D","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]}]},{"id":"21","zone":2,"type":"single","q":"Kenneth 想使用生成式 AI 制定度假計畫，旅程應包括：①美國西部遊玩十天 ②多個戶外自然景點 ③飛往景點區交通樞紐機場 ④租車遊覽景區。哪項提示詞最有可能生成合適的行程？","a":"A","exp":"提示詞的「完整性」決定輸出品質。選項 A 完美覆蓋了所有維度：天數（10 天）、地點（美西）、活動（景點）與物流（機場與租車）。其他選項漏掉了天數或具體的物流需求，可能導致 AI 生成出不可執行的行程。","src":"公開參考題庫（80 題）","opts":["制定一個為期十天的旅行行程，包括飛往距離其中一個景點相對較近的機場，並租車遊覽美國西部的多個著名景點。","制定一個旅行行程，包括前往一個距離相對較近的機場，並租車遊覽美國西部的景觀。","制定一個為期十天的旅行行程，包括租車遊覽美國的五個戶外景點，並飛往一個七月份通常不繁忙的城市機場。","制定一個旅行行程，包括飛往美國西部並參觀當地的景點。"]},{"id":"22","zone":2,"type":"single","q":"哪兩個提示詞可以用於總結現有內容？","a":"A,B","exp":"「總結」任務的目的是壓縮資訊並保留重點。選項 A 屬於從訓練資料中提取精華（擷取式總結）；選項 B 屬於針對提供的上下文進行濃縮（會議摘要）。選項 C 是規劃，D 是創作，E 是程式編寫，均非總結。","src":"公開參考題庫（80 題）","opts":["「托爾金的《魔戒》的情節是什麼？請用 500 字概括。」","「今天會議的主要議題是什麼？（並同時提供了會議記錄。）」","「我將在邁阿密度假兩周，可以做哪些有趣的事？」","「寫一首詩，詩的內容講的是一隻穿著紅馬甲的魔法兔子。」","「使用 Python 生成一個程式，該程式通過詢問你的生日來告知你的年齡。」"]},{"id":"23","zone":2,"type":"group","q":"你想用 AI 生成攀登吉力馬札羅山的計畫。請將有效提示詞的各部分配對正確選項：","a":"","exp":"這模擬了思維鏈（CoT）的建構過程：1. 明確目標（攀登吉力馬札羅山）；2. 針對痛點（初學者路線）；3. 環境約束（旱季，考量安全性）；4. 平衡預算與專業（專業且實惠的導遊）。","src":"公開參考題庫（80 題）","subs":[{"q":"我想：","a":"D","options":["A. 飛往非洲","B. 登頂最大的山峰","C. 到訪坦尚尼亞","D. 攀登吉力馬札羅山"]},{"q":"查找：","a":"A","options":["A. 最適合初學者的路線","B. 飛往非洲花費最少的航班","C. 花費最少的路線"]},{"q":"將旅行限制為：","a":"C","options":["A. 直飛坦尚尼亞的班機","B. 飛往非洲最便宜的班機","C. 非洲的旱季","D. 僅限不下雨的日子"]},{"q":"選擇：","a":"B","options":["A. 非洲所有優惠價格的導遊","B. 所有專業攀登吉力馬札羅山的價格實惠的導遊","C. 坦尚尼亞所有經濟實惠的導遊","D. 所有在旱季工作價格實惠的導遊"]}]},{"id":"24","zone":2,"type":"group","q":"每個提示詞用於製作或轉換什麼樣的圖像？進行正確配對：","a":"","exp":"影像轉換 (Style Transfer) 是改變風格；探索創想是利用潛在空間進行超現實發散；視覺理解 (VQA) 是分析內容；製作特定用途影像是針對商標等具體需求的設計。","src":"公開參考題庫（80 題）","subs":[{"q":"將附加照片製作成達芬奇的蒙娜麗莎風格的畫作","a":"A","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]},{"q":"繪製幾幅大灰狼參加考試的圖畫","a":"B","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]},{"q":"附加照片中是什麼內容？","a":"C","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]},{"q":"製作一個包含橘色大寫字母「P」的商標，並帶有凸顯綠色的漸層背景。","a":"D","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]}]},{"id":"25","zone":2,"type":"single","q":"Jasmine 要創立一家環保草坪服務公司，她輸入提示詞「為一家環保草坪服務公司製作一個商標 Logo。」Jasmine 應該增加哪個提示詞，來製作對受眾更有針對性的商標？","a":"A","exp":"這反映了提示工程中的具體化 (Specificity) 原則。原始提示詞太抽象，選項 A 引入了「青草、鮮花、蜜蜂」等具象元素（Visual Metaphor），這些元素在心理學上與「生態系統」強烈掛鉤，能精確擊中環保意識消費者的痛點。與其說「我要環保」，不如給 AI 具體的視覺物件。","src":"公開參考題庫（80 題）","opts":["添加一個有綠色青草、五顏六色的鮮花和蜜蜂的小院。","這不是我所要做的，能否再建立一個？","建立另一個包含更多內容的圖像。","這是一台不對的割草機，但請讓它更具吸引力。"]},{"id":"26","zone":2,"type":"group","q":"AI 已生成一輛黑色野馬跑車圖像，你希望它看起來像鏡像方向（對稱）。下列哪些提示詞應該使用？正確為「O」，錯誤為「X」：","a":"","exp":"要讓汽車看起來像「對稱」的另一面，正確的操作是「水平鏡像（Horizontal Mirror）」，這會將物體左右對調。「顛倒（Flip Upside Down）」會讓輪胎朝天；「旋轉 180 度」則同時造成上下顛倒與左右對調，方向並不相同。","src":"公開參考題庫（80 題）","subs":[{"q":"顛倒圖像。","a":"X"},{"q":"水平鏡像圖像。","a":"O"},{"q":"將汽車旋轉 180 度。","a":"X"}]},{"id":"27","zone":2,"type":"single","q":"你建立學校吉祥物（鬥牛犬）圖像，收到「學校裡友好的鬥牛犬」這種太過一般的輸出，需要更符合樂隊演奏會場景。應使用哪兩組提示詞？","a":"A,B","exp":"當初始生成結果太過一般化時，需要透過迭代提示（Iterative Prompting）來增加細節層次。選項 A 與 B 透過增加「樂隊指揮服、指揮棒、小號、薩克斯管」等具體道具與服裝，將「鬥牛犬」與「樂隊演奏會」這個特定場景緊密結合，這就是所謂的語境堆疊（Contextual Layering）。","src":"公開參考題庫（80 題）","opts":["一隻友好的鬥牛犬穿著樂隊指揮服，戴著樂隊指揮帽，拿著指揮棒","插圖中有一隻友好的鬥牛犬，穿著學校服樂隊服。正在演奏樂器，例如吹奏小號或薩克斯管","顯示一隻友好的鬥牛犬坐在學校樂隊成員旁邊的觀眾席上。","插圖中有一隻友好的鬥牛犬，穿著學校制服，站在學校前面。"]},{"id":"28","zone":2,"type":"single","q":"學校 30 秒影片中，一名穿著亮綠色毛衣的學生從右側橫穿畫面，影片無法重拍。需從剪輯中刪除這名學生，同時盡可能保留原始內容。應使用哪個 AI 指示詞？","a":"A","exp":"這題觸及了 AI 影片剪輯的核心技術：物件移除（Object Removal）與修復（In-painting）。選項 A 是最專業的作法，AI 會分析前後幀的像素，計算出學生身後的「背景」應該是什麼樣子，並用生成的背景取代，從而無縫修復畫面。剪掉區域會破壞構圖，用文字覆蓋則不符合「保留原始內容」的要求。","src":"公開參考題庫（80 題）","opts":["讓影片中穿著亮綠色毛衣的學生以背景影片取代。","從螢幕的左向右側剪掉穿著淺綠色毛衣的學生。","更改影片的背景色，但不包括前景的該名學生。","生成文字段落來覆蓋由左向右移動的學生，在文字段落中描述場景中發生的情況。"]},{"id":"29","zone":2,"type":"group","q":"針對生成某品牌新款廚師機的產品正面評價影片，下列哪些提示詞是有效的？正確為「O」，錯誤為「X」：","a":"","exp":"製作產品影片時，AI 需要的是「結構（Structure）」與「行動呼籲（CTA）」。第一個選項提供了具體長度（5 分鐘）與清晰的敘事流程（介紹➔易用性➔清洗➔購買），這是大綱式提示（Outline Prompting）的典範。第二個選項太籠統，第三個選項要求「無偏見」則與廣告推銷的目的衝突。","src":"公開參考題庫（80 題）","subs":[{"q":"製作一段 5 分鐘影片，詳細介紹某品牌新款廚師機。在影片中，應進行介紹、說明它易於使用和清洗並進行總結，鼓勵觀眾購買這款廚房用具。","a":"O"},{"q":"製作有關新款廚師機的影片。在影片中，應討論其潛在用途，並鼓勵潛在買家購買這款廚師機。","a":"X"},{"q":"製作廚師機的無偏見評價影片。","a":"X"}]},{"id":"30","zone":2,"type":"group","q":"針對製作一段有動畫猴子角色按腳本表演的影片，下列哪些提示詞有助於實現目標？正確為「O」，錯誤為「X」：","a":"","exp":"要讓動畫角色按腳本表演，提示詞必須定義「角色設定 + 任務環境 + 輸入源」。第一個選項結合了時間（45 秒）、角色（猴子）、具體腳本執行以及獨特的環境背景（太空），給予了 AI 完整的約束條件。其他選項雖然提到了元素，但缺乏將「腳本內容」與「角色表演」整合的具體指令。","src":"公開參考題庫（80 題）","subs":[{"q":"製作一段 45 秒影片，其中有一隻猴子使用指定的腳本在太空中解釋複雜的太空概念。","a":"O"},{"q":"製作一段 45 秒影片，使用動畫技術讓一隻猴子在太空中念劇本。","a":"X"},{"q":"製作一段 45 秒影片，讓猴子當宇航員，並使用高級文本轉語音軟體，讓它念一段關於太空的腳本。","a":"X"}]},{"id":"31","zone":2,"type":"single","q":"你向 AI 發出「制定快速鍛鍊計畫」，結果僅生成約 10 分鐘且強度不明的方案。若要讓訓練計畫符合 30 分鐘力量訓練目標，接下來應使用哪個提示詞？","a":"A","exp":"這題反映了提示詞的迭代細化（Iterative Refinement）。面對不滿意的初步結果，最有效的方法是「明確定義變數」。選項 A 直接修正了兩個核心參數：時間長度（Duration, 30分鐘）與訓練類型（Modality, 力量訓練）。這比選項 B 的模糊指令或選項 C 的詢問原理更能直接導向可執行的結果。","src":"公開參考題庫（80 題）","opts":["按照 30 分鐘的力量訓練進行修改。","更精細一些。","說明如何通過 30 分鐘的力量訓練提升身體素質。","增加更多輸出。"]},{"id":"32","zone":2,"type":"group","q":"你打算使用生成式 AI 為能在 iOS 和 Android 上執行的應用程式生成程式碼。針對每個敘述，你是否應該使用提示詞？應該為「O」，否則為「X」：","a":"","exp":"這題考驗對 AI 能力邊界的理解。AI 無法直接在你的硬體上「建立」或「展示執行效果」（選項 1, 2），它只能產出「程式碼」（數位資產）。因此，正確的指令是要求 AI「編寫程式碼」（選項 3），然後再由人類開發者進行編譯與部署。","src":"公開參考題庫（80 題）","subs":[{"q":"建立一個具備三個頁面的應用程式：主頁、關於和聯繫方式。","a":"X"},{"q":"向我展示具有三個頁面（主頁、關於和聯繫方式）的 Android 和 iOS 應用程式在我的設備上的顯示效果。","a":"X"},{"q":"編寫程式碼以建立一個具有三個頁面的應用程式，分別是主頁、關於和聯繫方式。該應用程式應該能在 Android 和 iOS 上執行。","a":"O"}]},{"id":"33","zone":2,"type":"single","q":"你剛剛與團隊一起參加了工作會議，需要建立一份精簡的摘要，記錄會議中討論的每個要點。可以選擇哪兩個提示詞生成摘要？","a":"B,D","exp":"高品質的會議摘要取決於「資訊密度」與「上下文框架」。選項 B 聚焦於「決策（Decisions）」與必要資訊，這是商務摘要的核心；選項 D 提供了會議的「目的回顧」，確立了摘要的背景（Context）。選項 A 僅關注後續任務，選項 C 僅是格式調整，均不足以構成完整的內容摘要。","src":"公開參考題庫（80 題）","opts":["列出上次會議的所有行動事項和後續任務","僅摘錄本次會議的必要資訊和決定","為此會議記錄設定格式","簡要回顧此次會議的目的"]},{"id":"34","zone":2,"type":"group","q":"一位社會科學家準備一個龐大的房屋資料集。識別所需的標頭標籤，以用於完成各項分析工作。將每個分析目標配對正確的欄位標籤：","a":"","exp":"這題是資料科學的前置作業，測試是否能將「分析目標」對應到正確的「資料欄位（Schema）」：\n1. 最新房產 → 需要「建造年份」與分類用的「社區類型」。\n2. 空間相關性 → 需要「面積」、「臥室/衛浴數量」與「區域」。\n3. 平均單價 → 需要「總價」除以「面積」，並按「區域」分組。\n4. 價格預測 → 需要所有影響價格的特徵向量（區域、臥室數、年份）作為模型輸入。","src":"公開參考題庫（80 題）","subs":[{"q":"確定每種社區類型中年份最新的房產","a":"A","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]},{"q":"確定房屋大小、房屋數量與區域之間的相關性","a":"B","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]},{"q":"查找每個區域的每平方米平均價格","a":"C","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]},{"q":"假設市中心有一套 2020 年建成的三房住宅，預測它的價格","a":"D","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]}]},{"id":"35","zone":2,"type":"single","q":"你要建立一個美食社群來展示你的烹飪技術，想使用 AI 創作一篇貼文。哪個提示詞將生成或可用於建立該貼文的輸出？","a":"A","exp":"經營美食社群的核心在於「個人敘事」與「品牌人設（Persona）」。選項 A 建立了創作者的品牌故事與情感連結，讓受眾認識你這個人，是發展社群帳號最重要的第一步。選項 C 是攝影教學，選項 D 是旅遊導覽，均偏離了「展示烹飪技術」的核心目標。","src":"公開參考題庫（80 題）","opts":["寫一個介紹性的社群貼文，介紹我對美食的熱愛以及啟發我建立這個社群帳號的因素。在文章中包括我最喜歡的菜餚和烹飪風格。","分享一個詳細的食譜，其中包含步驟說明和生動的圖像。重點突顯出使用的任何獨特配料或烹飪技巧。","分享拍攝美食照片的技巧。討論可增強美食呈現效果的燈光、角度和道具。","記錄人們可以在我的城市中進行的美食之旅。介紹該城市著名的當地特色美食和風味。"]},{"id":"36","zone":2,"type":"single","q":"你要成立一家名為 Healthy Eats 的小型食品企業，希望在商標 Logo 中包含公司名稱、粉色和綠色以及草莓圖片。哪兩個提示詞最有可能提供符合這些標準的商標 Logo？","a":"A,C","exp":"高品質的圖像生成提示詞必須包含：名稱、色彩空間、物件元素。選項 A 與 C 最優，因為它們明確列出了所有硬性需求：品牌名（Healthy Eats）、特定顏色（粉色/綠色文字）、具象圖案（草莓）。若不指定顏色應用於文字，AI 常會隨機分配顏色。","src":"公開參考題庫（80 題）","opts":["名叫 Healthy Eats 公司的小型企業商標 Logo，使用粉色和綠色文字以及草莓圖片。","製作一個以草莓為主題的商業商標 Logo，以強調健康飲食。在商標中包括公司名稱 Healthy Eats","我想為一家小型企業製作商標 Logo，這家企業名叫 Healthy Eats，文字應為粉紅色和綠色。並且商標 Logo 中應包含草莓圖片。","為我的公司設計一個商標，使用粉色和綠色作為配色方案，並在商標上放置一顆草莓。","為我的小型企業 Healthy Eats 設計一個富有創意的商標 Logo，使用粉色和綠色以及草莓圖片，並反映出我的企業價值觀。"]},{"id":"37","zone":2,"type":"single","q":"你正在寫一部小說，打算生成一些封面草圖。要獲取最有用的輸出，你應該在提示詞中包含哪些項目？","a":"A","exp":"給予 AI（或人類藝術家）的創意簡報（Creative Brief）必須包含視覺構成要素。選項 A 涵蓋了書名（文字元素）、主題與背景（內容敘事）、藝術風格（視覺基調）。單純的人物姓名、頁數或插圖尺寸對於構建一個吸引人的封面幫助甚微，封面的靈魂在於氛圍與佈局。","src":"公開參考題庫（80 題）","opts":["書名、主題、背景、所需的藝術風格以及封面圖應包含內容的概述","人物姓名、書名、作者姓名和藝術家姓名","藝術家提供的插圖範例、書名和頁數","插圖尺寸、書名、書的主題和商標藝術家的姓名"]},{"id":"38","zone":2,"type":"group","q":"針對發給生成式 AI 的下列每個提示詞，人工智慧（AI）會為「O」，不會為「X」：","a":"","exp":"這題區分了「創意生成」與「系統管理」。AI 可以進行 Image-to-Image 轉化（將草圖變真實），這是擴散模型的強項。但 AI（特別是 LLM）無法「理解」檔案格式（這是解析器的功能），也無法直接修改檔案的中繼資料（Metadata），因為這涉及作業系統層級的二進位檔案編輯權限。","src":"公開參考題庫（80 題）","subs":[{"q":"瞭解商標 Logo 的檔案格式。","a":"X"},{"q":"將房屋的草圖轉換為具有很強真實感的表示形式。","a":"O"},{"q":"修改度假照片的中繼資料，以更改其位置和日期。","a":"X"}]},{"id":"39","zone":2,"type":"group","q":"針對為公司製作一份公益廣告（鼓勵大家勤洗手），下列做法在建立提示詞時是否應遵循？正確為「O」，錯誤為「X」：","a":"","exp":"這是提示工程的黃金法則：1. 具體化（提供視覺細節）；2. 明確化（定義受眾與類型）；3. 脈絡化（提供背景）；4. 顯性化（拒絕假設 AI 懂你，AI 沒有常識）；5. 簡潔化（直白語言）。選項 4 是最大的誤區，如果不提供詳細解釋，AI 只會根據機率隨機猜測。","src":"公開參考題庫（80 題）","subs":[{"q":"需要特定場景、人物或操作時，請提供全面的視覺和敘述性描述。","a":"O"},{"q":"明確定義你的要求，例如指定影片類型、目標受眾和要點。","a":"O"},{"q":"包括與影片相關的詳細背景資料、基調和風格。","a":"O"},{"q":"假定人工智慧系統瞭解專案的一般背景，這樣就減少了提供詳細解釋的需求。","a":"X"},{"q":"使用直白的語言，盡可能減少誤解。","a":"O"}]},{"id":"40","zone":2,"type":"single","q":"你要使用生成式 AI 將 PPT 簡報轉換為有關甜菜的具有專業性和教育性影片。哪個提示詞可達到預期結果？","a":"A","exp":"要製作「專業且教育性」的影片，提示詞必須包含節奏控制（留出閱讀時間）與口吻設定（正式場合）。選項 A 完美符合這些要求。選項 B 過於娛樂化（表情符號），選項 D（新聞播報）偏離了教育初衷，選項 C 則是生成圖像而非影片。","src":"公開參考題庫（80 題）","opts":["使用提供的簡報，製作一段有關甜菜的 2 分鐘影片。應採用正式場合口吻，在動畫中，應留出時間讓人讀出提供的文字。","使用提供的簡報作為基礎，生成一段關於甜菜的 2 分鐘影片。影片應生動有趣，並包括 GIF 動畫和表情符號。","查看簡報並確定有關甜菜的最佳資訊。使用這些資訊，生成一系列可在簡報中使用的新圖像。","你是一名新聞播報員。使用簡報中的資訊，查找最近有關甜菜的新聞報導，並將其製作成影片。"]},{"id":"41","zone":2,"type":"single","q":"你發出了提示詞「公園裡有一隻快樂的狗」，輸出是一隻卡通狗。你希望這隻狗更加逼真，要採用復古風格且顏色應該很飽滿。哪個提示詞會提供更符合要求的輸出？","a":"A","exp":"這題考驗風格描述詞（Stylistic Descriptors）的運用。若要改變輸出風格，必須明確指定。選項 A 透過「復古插圖（Vintage Illustration）」定義了視覺基調，並以「鮮豔色彩（Vivid Colors）」滿足了飽滿度的需求。其他選項缺乏對風格的具體約束，容易導致 AI 回退到預設的卡通或一般風格。","src":"公開參考題庫（80 題）","opts":["運用鮮豔的色彩描繪城市公園裡有一隻快樂的狗的復古插圖。","公園裡有一隻快樂的狗的彩色影像","一隻快樂的狗坐在城市公園裡的 200x200 像素影像","城市公園裡有一隻快樂的金毛獵犬的影像"]},{"id":"42","zone":3,"type":"group","q":"針對為史密斯附近的大壩拆除專案建立無偏見的摘要，下列提示詞是否帶有偏見？有偏見為「O」，無偏見為「X」：","a":"","exp":"識別偏見是 AI 素養的關鍵。第一個選項僅關注「成就（Achievements）」，屬於選樣偏差（Selection Bias）。第二個選項僅採納「公用事業公司」的建議，該方通常是利益相關者，具有立場偏差。第三個選項引用「獨立第三方研究（Independent 3rd Party）」，並關注可行性與策略，這是最客觀中立的提示方式。","src":"公開參考題庫（80 題）","subs":[{"q":"生成一個 150 字的摘要，內容關於大壩拆除的主要成就，重點關注對史密斯河附近的生態系統產生的最重大的影響。","a":"O"},{"q":"建立一份摘要，內容關於史密斯河附近可能進行大壩拆除所帶來的影響，並包含公用事業公司提出的生態系統恢復建議。","a":"O"},{"q":"生成一份摘要，內容關於獨立協力廠商研究中針對拆除大壩提供的建議，重點關注在史密斯河上實施該專案的可行性見解與潛在策略。","a":"X"}]},{"id":"43","zone":3,"type":"single","q":"你有一個橫條圖，該圖顯示了增加高脂肪食物攝入量和藥物用量增加之間的關係。哪個提示最能幫助你建立引人入勝的敘述內容，同時保留原始資料的含義？","a":"B","exp":"數據敘事（Data Storytelling）的目標是將數據轉化為洞察。選項 B 是最佳解，因為它保留了數據的「技術術語（Fidelity）」，確保準確性，同時加入了「後果推論（Consequences）」，使內容具備行動啟發性。選項 A 的故事可能過度演繹，選項 C 過於通俗，選項 D 則完全娛樂化，損失了數據的嚴謹性。","src":"公開參考題庫（80 題）","opts":["撰寫一個麵包師發現規律的故事，在故事中包括圖表中的資料，暗示高脂肪食物與藥物用量之間的關係。","編寫橫條圖的摘要，其中包括所有技術術語，以及如果人類繼續保持相同的習慣可能會發生的後果。","為醫院候診室編寫一本宣傳冊，用通俗的語言解釋橫條圖中呈現的資料，並提供範例。","創作一首說唱歌曲，其中包含三段歌詞和一段副歌，說明健康飲食的重要性，及其對身體健康的影響。"]},{"id":"44","zone":3,"type":"single","q":"Nicole 為她的高中英文課撰寫了一篇議論文，並將這篇文章上傳到生成式 AI 工具請求協助。她可以使用哪些提示詞來幫助她「編輯」作業？","a":"A","exp":"在學術寫作中，AI 應作為「編輯（Editor）」而非「代筆者（Writer）」。選項 A 聚焦於語法、標點、拼寫等技術性編輯（Proofreading），這是最安全且能提升文章品質的方式。選項 C 與 D 則是要求 AI 直接寫作，屬於學術不端行為。","src":"公開參考題庫（80 題）","opts":["分析上傳文章，提供語法、標點、拼寫和大小寫方面的建議。","分析上傳文章，提供有關的內容以及論證任務相符性的建議。","寫一篇符合高中生風格的規範作文。","撰寫一篇能夠在英語課上獲得高分的議論文。"]},{"id":"45","zone":3,"type":"single","q":"你要建立一份銷售簡報，以探討消費者年齡和購買產品數量兩個變數之間的關聯。哪個提示詞最有可能生成恰當的資料視覺表示形式？","a":"A","exp":"這題涉及統計圖表的選擇。當需要探討「兩個連續變數（年齡 vs 購買量）」之間的「相關性（Correlation）」或分佈模式時，散點圖（Scatter Plot）是唯一正確的選擇。圓形圖用於比例，長條圖用於類別比較。透過散點圖，可以直觀看出某個年齡層是否購買力特別強。","src":"公開參考題庫（80 題）","opts":["建立一個散點圖，顯示特定產品的銷售量與消費者年齡之間的關係。","說明一個圓形圖，顯示我公司去年銷售的最暢銷的產品。","與橫條圖相比，使用長條圖來直觀顯示銷售資料有哪些好處？","製作一個圖表，顯示特定產品的總銷售量。"]},{"id":"46","zone":3,"type":"group","q":"下面這張散點圖包含一條趨勢線，顯示你的零售店的每週淨利潤。針對將圖表中的資料轉變為年終銷售現場會議所需的報告，下列提示詞能否撰寫所需報告？可以為「O」，不可以為「X」：","a":"","exp":"這題測試的是 AI 處理數據結構的能力。選項 4 (O) 涉及數據的「重新採樣與彙整（Data Aggregation）」，AI 可以計算每週數據的平均值與總和，並轉化為高層級的決策報告。其他選項均存在邏輯缺陷：散點圖無法直接變為年收入（資訊不足）、傳單不等於報告、語音敘述不具備結構化報表的特徵。","src":"公開參考題庫（80 題）","subs":[{"q":"將散點圖資料轉變為公司年收入的直觀表示形式。","a":"X"},{"q":"根據淨利潤資料設計一個宣傳傳單，重點介紹公司業績最好的幾週的情況。","a":"X"},{"q":"製作一段敘述語音，說明全年淨利潤資料中顯示的主要趨勢和模式。","a":"X"},{"q":"將每週淨利潤資料的格式轉換為季度報告，總結每個季度的總淨利潤和平均淨利潤。","a":"O"}]},{"id":"47","zone":3,"type":"single","q":"Brianna 提供了提示詞「制定每週鍛煉計畫」，但 AI 生成的計畫因她的身體狀況和工作時間問題，無法按計畫進行鍛煉。她應如何改進提示詞？","a":"A","exp":"這題反映了生成式 AI 在處理「個人化需求」時的局限。初始提示詞是「零樣本（Zero-shot）」的請求，缺乏邊界條件。選項 A 提供了最重要的「約束條件（Constraints）」：時間表與身體限制，稱為「情境填充」。AI 需要精確的輸入參數才能輸出可執行的計畫。","src":"公開參考題庫（80 題）","opts":["Brianna 應提供自己的時間表，並說明她身體狀況面臨的限制。","Brianna 應重新輸入該提示詞，讓人工智慧（AI）再制定一個個性化的健身計畫。","Brianna 應要求人工智慧（AI）提供鍛煉和飲食建議。","Brianna 應盡可能嘗試執行人工智慧（AI）提供的計畫。"]},{"id":"48","zone":3,"type":"single","q":"你一直使用同一對話生成所有社群媒體貼文，最新生成的一個貼文格式不符合預期，你希望它的格式與其他貼文的格式一致。你應該提供哪個後續提示詞？","a":"A","exp":"當 AI 生成的格式不符合預期，且對話中已有正確範例時，最有效的方法是「引用上下文（Referencing Context）」。選項 A 利用了 LLM 的「注意力機制（Attention Mechanism）」，讓它回顧對話歷史中的成功案例進行仿效。「同一個對話」內的參數權重是最高的，這比重新餵食其他使用者的資料更直接精確。","src":"公開參考題庫（80 題）","opts":["請修改貼文，使其看起來像之前生成的社群媒體貼文。","這裡有一些來自其他使用者的同一個主題的社群媒體貼文。請重新生成貼文。","這裡有一些我的朋友回覆之前貼文的螢幕截圖，請重試。","你是否透過加入主題標籤（hashtags）與標記其他內容創作者的用戶標籤（usertags）來優化這個貼文的觸及率？"]},{"id":"49","zone":3,"type":"single","q":"你正在使用 AI 系統為科技部落格產生內容，初始回覆是「人工智慧領域近期的發展趨勢，大力推動優化機器學習演算法…」。你接下來應使用哪個提示詞來獲得更詳細、更有針對性的回覆？","a":"A","exp":"高品質的內容需要從「廣度」轉向「深度」。選項 A 是一種「深入鑽研（Drill-down）」的策略，要求 AI 針對初步回覆中的「機器學習突破」提供具體的「汽車與金融」範例。這是一種「遞迴檢索」的思維，能有效避免 AI 產生空洞的廢話，確保文章具備專業的洞察力。","src":"公開參考題庫（80 題）","opts":["提供詳細的範例，說明最近在機器學習演算法方面的突破及其對汽車和金融行業的影響。","概述過去一年中開發的最新 AI 助手的技術規範和硬體要求。","總結 AI 從創始到現狀的歷史進程，重點介紹關鍵里程碑和數字。","預測 AI 在未來十年中的發展趨勢，重點介紹它可能如何顛覆市場及其新的行業應用。"]},{"id":"50","zone":3,"type":"single","q":"哪項定義正確地描述了提示詞鏈接（Prompt Chaining）技術？","a":"A","exp":"提示詞鏈接（Prompt Chaining）的核心定義是：將一個複雜任務拆解成多個子任務，並將前一個步驟的輸出作為下一個步驟的輸入（選項 A）。這與 Few-shot Prompting（選項 B）或 Chain-of-Thought（選項 C）不同，鏈接是開發 AI Agent 或自動化工作流的基石，能突破模型單次生成的限制。","src":"公開參考題庫（80 題）","opts":["將任務劃分為更小的子任務並使用一個新提示詞的輸出作為下一個提示詞的輸入。","提供若干範例，說明如何回答問題，並提供特定任務給人工智慧（AI）的行為。","提供需要進行數值計算的問題，以及如何計算該問題的結果的範例，然後要求提供類似問題的結果。","發出有關一個主題的指令詞，然後再發出有關另一個主題的提示詞。"]},{"id":"51","zone":3,"type":"group","q":"你建立大型語言模型的設定檔，該設定檔應套用一系列符合條件的問題，詢問用戶的心情和喜歡的音樂，並以此開始每次交互。對於每個指令，如果它能實現該目標，為「O」，不能實現為「X」：","a":"","exp":"這題考驗的是「引導式對話（Guided Dialogue）」的設計。隨機生成（選項 1）不需要 AI 互動。高品質的系統設定應該透過「結構化提問」（選項 2）與「量化指標」（選項 3，Likert Scale）來挖掘用戶深層偏好。這種「先提問、後生成」的流程，能有效減少幻覺，確保播放清單具備高度的「個性化契合度」。","src":"公開參考題庫（80 題）","subs":[{"q":"隨機生成歌曲清單。","a":"X"},{"q":"根據所在國家／地區當前最新熱門的 40 首歌，生成一系列相應的關於心情問題。這些問題應有以下幾類答案：「我覺得一樣」、「我覺得不一樣」或「這個問題與我無關」。","a":"O"},{"q":"僅對以下問題提問並要求回覆 1、2、3、4 或 5，以 1 到 5 評分，5 是最高分：1. 你有多開心？ 2. 你有多喜歡流行音樂？ 3. 你有多喜歡古典音樂？","a":"O"}]},{"id":"52","zone":3,"type":"single","q":"你讓一個生成式 AI 聊天機器人列出第二次世界大戰中發生的關鍵事件及其日期。哪兩種方法可以很好地驗證這些資訊是否正確？","a":"A,B","exp":"驗證歷史事實應回到「外部權威來源」：以搜尋引擎查證學術或官方資料（A），或直接查閱歷史專書與史料（B）。重新執行同一個模型（C）只會得到另一個機率輸出；再問另一個聊天機器人（D）同樣屬於生成式輸出，不能當作驗證來源。","src":"公開參考題庫（80 題）","note":"原始題庫標示 A、D；依考綱 3.5「驗證輸出正確性須使用可信外部來源」與同卷第 72 題邏輯，正解應為 A、B。","opts":["在搜尋引擎中查找相關事件，並確認提供的日期是否相同。","直接查看歷史書來確認二戰關鍵事件的日期。","重新運行人工智慧（AI）請求，因為生成式 AI 具有隨機元素，然後確認提供的日期是否相同。","讓另一個聊天機器人為你提供資訊並比較輸出。"]},{"id":"53","zone":3,"type":"single","q":"你要向非技術專業的受眾說明技術安全原則，想使用生成式 AI 將最近的安全性漏洞掃描報告轉換為適合該受眾的簡報。你應該使用哪個提示詞？","a":"A","exp":"這是一種「語意翻譯（Semantic Translation）」任務。選項 A 掌握了核心：「簡化語言 + 視覺輔助 + 範例」。非技術受眾（如高層）需要知道的是「風險是什麼」，而非技術細節。AI 在此的角色是「解釋者（Explainer）」，透過類比將硬核指標轉化為決策參考。","src":"公開參考題庫（80 題）","opts":["使用較為簡單的語言重新編寫報告，並添加視覺輔助和範例。","擴展安全掃描報告的技術詳細資訊。","總結該報告的要點。","提供針對安全掃描報告的詳細、批判性分析。"]},{"id":"54","zone":3,"type":"single","q":"你想使用生成式 AI 將新員工手冊轉換為簡報。哪個提示詞最有可能生成促進學習的簡報？","a":"A","exp":"將手冊轉化為簡報時，重點在於「認知負荷（Cognitive Load）」的管理。選項 A 強調了「吸引人且易於理解」，這要求 AI 進行「內容重組」而非單純的格式調整（選項 B）。這不僅是格式轉化，更是內容的「教學法優化（Pedagogical Optimization）」。","src":"公開參考題庫（80 題）","opts":["製作一個簡報，將內容轉換為吸引人且易於理解的格式。","重新調整新員工手冊的格式，使用一致的幻燈片佈局製作一個簡報。","製作一個新員工手冊，在手冊中包含相關圖像、圖表和圖形說明要點。","根據新員工手冊製作一個簡報，重點關注公司的價值觀。"]},{"id":"55","zone":3,"type":"single","q":"你要為小學課堂製作解釋光合作用的內容，結果對低齡受眾來說太過複雜。你如何才能優化結果，使其適合小學年齡段的受眾？","a":"A","exp":"解釋複雜概念給小學生聽，需要 AI 具備「心智模型切換」的能力。選項 A 明確定義了「兒童目標受眾」，這在提示工程中稱為「角色與受眾設定（Role & Audience Priming）」。當受眾明確時，AI 會自動過濾專業術語並使用比喻（如植物的廚房），這比單純說「簡單一點」（選項 B）更有效。","src":"公開參考題庫（80 題）","opts":["重新為兒童目標受眾編輯內容。","解釋得更簡單一點。","避免使用嚴格的語言，並提供具體的範例。","提供更簡短的解釋。"]},{"id":"56","zone":3,"type":"single","q":"你在 AI 工具中輸入提示詞，總覽一個圖表顯示 2000 年至 2005 年期間西班牙和南非每年的人口。你希望在圖形中顯示兩國人口在歷史上持續發生的變化。你應該指定哪個附加提示詞？","a":"A","exp":"要顯示數據隨時間的「持續變化（Historical Changes）」，折線圖（Line Chart）是最優選擇（選項 A）。折線圖能直觀展現斜率（增長速度）與趨勢。原圖的橫條圖適合比較絕對數值，圓形圖（選項 D）適合比例。這題考驗對「時序數據（Time-series Data）」合適呈現方式的認知。","src":"公開參考題庫（80 題）","opts":["重新生成現有資料表示，將格式更改為折線圖。","使用這些新的西班牙和南非人口預測資料，重新生成圖形。","根據資料中的趨勢，預測這個橫條圖在未來幾年內會如何發生變化。","使用圓形圖格式，重新生成現有資料表示。"]},{"id":"57","zone":3,"type":"single","q":"你在提示詞中提供了問答範例，範例中的答案不僅給出結果，還包含解釋邏輯（例如「根據色彩理論，將紅色和藍色按 2：1 混合…因為額外的紅色會在色輪上將色調變為更接近紅色…」）。你使用的是哪種類型的提示詞？","a":"A","exp":"這個範例展示了「思維鏈 (Chain of Thought, CoT)」的威力。提示詞中的範例答案不僅給出了結果，還包含了解釋邏輯（例如：因為額外的紅色…）。這稱為 Few-shot CoT，它不僅告訴 AI「答案是什麼」，更教會 AI「如何思考」，能顯著提升 AI 處理邏輯推理問題的準確度。","src":"公開參考題庫（80 題）","opts":["思維鏈（CoT）","零樣本學習","少樣本學習 (Few-shot learning)","自一性整理"]},{"id":"58","zone":3,"type":"single","q":"你想使用反向提示詞（Reverse Prompting），讓 AI 為你生成包含適當細節的履歷。哪個提示詞最有助於實現此目標？","a":"A","exp":"這稱為「資訊收割法」或反向提示詞（Reverse Prompting）。選項 A 要求 AI 主動列出它需要哪些資訊（讓 AI 當面試官），而不是由用戶盲目提供。這能確保 AI 拿到的是真實且完整的資料，避免 AI 根據模糊標籤去「編造」專案，從而產出 100% 真實且具競爭力的履歷。","src":"公開參考題庫（80 題）","opts":["讓我提供履歷所需的每個關鍵細節，然後使用這些資訊生成履歷。","使用標準履歷範本，生成包含可信細節的履歷。","我是一名具有 5 年經驗的英語老師，請為我撰寫一份履歷，用於申請一個教學崗位。","我從事電腦銀行工作四年，負責為金融行業編寫 Python 程式。請為我撰寫一份履歷，用於申請一個更高級的職位。"]},{"id":"59","zone":3,"type":"single","q":"某人工智慧（AI）工具提供了一個國家／地區的人口規模統計。你可以採取哪兩個步驟來驗證統計資訊的可靠性？","a":"A,B","exp":"驗證國家級統計數據必須回歸「第一手權威來源」。政府人口普查資料（A）是法律上的「地面真理（Ground Truth）」。國際組織報告（B，如聯合國、世界銀行）具備極高的學術參考價值與標準化校準。新聞文章（E）通常是二手資訊，容易有誤差。專業研究必須「溯源至官方機構」。","src":"公開參考題庫（80 題）","opts":["交叉引用政府發佈的最新人口普查資料。","檢查聯合國或世界銀行等國際組織提供的報告。","使用包括預期人口統計趨勢的經濟預測。","與享有聲譽的經濟研究機構提供的預測進行比較。","查閱熱門新聞文章，瞭解這些新聞報導中是否提到了相似的人口趨勢。"]},{"id":"60","zone":4,"type":"single","q":"你正在使用多個 AI 工具，收集即將進行的選舉中有關候選人的資訊。使用 AI 工具做研究時，你可能會發現它存在哪兩項局限性？","a":"A","exp":"在政治敏感議題中使用 AI，核心挑戰在於「不可靠性」與「演算法偏見（Algorithmic Bias）」。選項 A 正確指出了這兩點。AI 可能會產生幻覺（不可靠），或因訓練資料的不對稱而偏袒特定候選人（偏見）。資訊量多寡或時間順序（B/C/D）並非本質上的局限。","src":"公開參考題庫（80 題）","opts":["你發現收集的資訊不可靠，且某些資訊似乎存在偏見。","你發現收集的資訊不可靠，且人工智慧（AI）工具為你提供有關候選人的大量資訊。","你發現某些資訊似乎存在偏見，且這些資訊都是按時間順序提供的。","你發現人工智慧（AI）工具為你提供有關候選人的大量資訊，且這些資訊都是按時間順序提供的。"]},{"id":"61","zone":4,"type":"group","q":"針對你在 Microsoft Copilot 中輸入提示詞「全球變暖是什麼？」，下列有關潛在輸出的敘述是否正確？正確為「O」，錯誤為「X」：","a":"","exp":"這題強調對 AI 輸出的「批判性思考」。沒有任何 LLM 能保證 100% 中立（選項 1 為 X），因此面對科學事實必須執行「外部接地（Grounding）」，查證權威來源（選項 2 為 O）。AI 是民主化工具，並非只有科學家能使用（選項 3 為 X）。","src":"公開參考題庫（80 題）","subs":[{"q":"你可以確信輸出而不存在偏見。","a":"X"},{"q":"你應查證權威科學來源的資訊。","a":"O"},{"q":"只有科學家能夠輸入這種類型的資料。","a":"X"}]},{"id":"62","zone":4,"type":"group","q":"下列哪項關於人工智慧（AI）偏見的描述是否正確？正確為「O」，錯誤為「X」：","a":"","exp":"AI 的偏見通常是「垃圾進，垃圾出（Garbage In, Garbage Out）」的結果，訓練資料偏見會導致模型偏見（選項 1 為 O）。目前尚無模型能完全消除偏見（選項 2 為 X）。因此，AI 治理中「人機協作審核（Human-in-the-loop）」是防範歧視的標準程序（選項 3 為 O）。","src":"公開參考題庫（80 題）","subs":[{"q":"使用有偏見的訓練資料的人工智慧（AI）影像或模型可能帶有偏見的影像。","a":"O"},{"q":"ChatGPT 最可靠地消除回覆存在的偏見。","a":"X"},{"q":"應人工審查人工智慧（AI）生成的內容是否存在偏見。","a":"O"}]},{"id":"63","zone":4,"type":"group","q":"某公司要開發自動駕駛汽車，讓這些汽車使用生成式 AI 進行導航。你需要將每個階段和相應場景進行配對。 A. 數據標註 | B. 部署 | C. 資料收集 | D. 模型訓練","a":"","exp":"這題描述了 AI 開發的標準流水線（Pipeline）：攝像頭錄製是獲取原始數據（資料收集, C）；將圖像物件轉換為可理解的標記是語義處理（數據標註, A）；調整權重讓模型學習區分特徵是核心過程（模型訓練, D）；將模型安裝到汽車進行場域測試則是最後一步（部署, B）。","src":"公開參考題庫（80 題）","subs":[{"q":"僅對停車場和交通信號燈圖像進行分詞處理。","a":"A","options":["A","B","C","D"]},{"q":"這些汽車將銷往各處，但在你的城市進行測試。","a":"B","options":["A","B","C","D"]},{"q":"攝像頭和感測器僅在白天錄製影片和聲音。","a":"C","options":["A","B","C","D"]},{"q":"資料包括根據身高採用不同加權值的行人。","a":"D","options":["A","B","C","D"]}]},{"id":"64","zone":4,"type":"single","q":"你是一家律師事務所的實習生，該公司想要在招聘流程中使用生成式 AI。需要考慮哪三種法律類型？","a":"B,C,D","exp":"在招聘中使用 AI 涉及多重合規議題：收集面試者個資需符合《個資法》（B）；確保 AI 篩選不會因性別或年齡產生歧視需符合《勞動法》（C）；招聘中生成的測驗題或報告的版權歸屬則涉及《智財法》（D）。AI 應用已不再是純技術問題，而是跨領域的合規議題。","src":"公開參考題庫（80 題）","opts":["房地產法","個人資料保護法","勞動法","智慧財產權法"]},{"id":"65","zone":4,"type":"single","q":"英國最高法院裁定在專利申請中，人工智慧（AI）不應該是唯一的發明者。如何使用生成式 AI 才能申請專利？","a":"A","exp":"專利法的原則是「發明人必須是自然人」。選項 A 中，AI 的角色為「輔助工具」（更正設計），最終的發明思維與決策仍由人類掌握，因此最符合申請條件。若由 AI 主導生成（如 B/C/D），會面臨發明人資格的法律爭議。專利實務中必須詳盡記錄人類的具體貢獻。","src":"公開參考題庫（80 題）","opts":["使用人工智慧（AI）更正現有設計中不準確的地方。","使用人工智慧（AI）生成尚未生產的新產品的計畫。","使用人工智慧（AI）重新設計現有產品以生產新產品。","利用人工智慧（AI）使用空白範本生成產品計畫。"]},{"id":"66","zone":4,"type":"single","q":"應該如何避免向大型語言模型洩露個人資訊？","a":"A","exp":"避免資訊洩漏的黃金準則就是「去識別化（De-identification）」。姓名、身分證字號、精確位置屬於 PII（個人識別資訊），一旦輸入公共 AI 模型，就可能被納入訓練集。雖然專有技術（B）也該保護，但這屬於「商業機密」而非「個人資訊」。","src":"公開參考題庫（80 題）","opts":["避免使用姓名、年齡、位置和社交媒體帳號等敏感資訊。","避免上傳技術規範和圖紙等專有資訊。","避免讓大型語言模型使用事實來預測與用戶的交互結果。","避免讓人工智慧（AI）在回覆提示詞的過程中扮演相應角色進行對話。"]},{"id":"67","zone":4,"type":"single","q":"哪二項描述識別了生成式 AI 及其使用的相關風險？","a":"A,B","exp":"這題釐清了 AI 產出的責任歸屬。無論 AI 怎麼寫，最終按下「發布」鍵的人必須負起法律責任（A）。利用 AI 生成深度偽造（Deepfake）誹謗他人或詐騙，已明確列入刑事與民事追訴範圍（B）。AI 目前尚無法完美自動阻斷有害內容，且必須維持人為監督。","src":"公開參考題庫（80 題）","opts":["你對使用生成式 AI 建立的內容負責。","使用生成式 AI 建立有害內容可引起民事或刑事訴訟。","即使沒有人為干預，生成式 AI 也可能輕鬆識別和阻止有害內容。","生成式 AI 可以很好地運行，無需人為監督來確保生成的內容正確無誤。"]},{"id":"68","zone":4,"type":"group","q":"你是一家合夥公司的合規經理，該公司正在考慮使用生成式 AI 聊天機器人來自動進行客戶處理。下列每個關於生成式 AI 聊天機器人的敘述，正確為「O」，錯誤為「X」：","a":"","exp":"對於合規經理而言，風險主要集中在「資料安全」與「法律合規」。財務與個人資料處理不當（O）會導致災難性的品牌信任崩潰與高額罰款。而「未能提供專業支持」（X）屬於「服務品質」問題，雖然重要，但其風險層級與「合規風險（Compliance Risk）」中的資料洩漏、法律責任不同。","src":"公開參考題庫（80 題）","subs":[{"q":"聊天機器人對敏感財務資料處理不當，導致客戶不滿。","a":"O"},{"q":"聊天機器人對敏感個人資料處理不當，導致客戶不滿。","a":"O"},{"q":"聊天機器人未能提供專業支持，導致客戶不滿。","a":"X"}]},{"id":"69","zone":4,"type":"group","q":"你們班正在討論 AI 對世界的貢獻，針對每個場景，積極影響為「O」，消極影響為「X」：","a":"","exp":"這是一個關於「技術雙面性」的分析。Sara 使用 AI 了解他人觀點體現了「同理心建模」的積極潛力；使用 AI 作為靈感大綱展現了提升「生產力」的價值。而利用深度偽造（Deepfake）進行政治操弄，則是嚴重的負面威脅。","src":"公開參考題庫（80 題）","subs":[{"q":"Sara 和她最好的朋友 Jane 在學校裡產生了分歧。Sara 回家後使用 AI 詳細瞭解 Jane 的觀點。","a":"O"},{"q":"在一次選舉中，一名候選人使用深度偽造（Deepfake）技術讓對手說了一些他沒有說過的話。","a":"X"},{"q":"Sara 使用生成式 AI 工具來搜尋熱門話題，生成了一個包含可能的部落格文章觀點的大綱。","a":"O"}]},{"id":"70","zone":4,"type":"single","q":"哪兩項有關生成式 AI 的影響是真實的？","a":"A,B","exp":"AI 在職場中的兩大支柱為「生產力解放」（A，節省時間、提高效率）與「創意協作」（B，支援發散性思考、腦力激盪）。選項 C 與 D 不符現實，AI 反而可能增加處理資訊的頻寬，且藝術領域更強調人類靈魂的注入，AI 是工具而非替代品。","src":"公開參考題庫（80 題）","opts":["生成式 AI 可以讓員工節省時間並提高工作效率。","生成式 AI 可以為發散性的思考提供支援。","生成式 AI 將人們每天在螢幕上花費的時間平均減少了 5 小時。","生成式 AI 減少了人類在藝術領域進行創造的需求。"]},{"id":"71","zone":4,"type":"single","q":"你需要為管理團隊建立一個簡報，說明使用生成式 AI 的至少兩個侷限性。你應選擇哪兩個範例？","a":"A,B","exp":"這是管理層需知的「風險管理」核心。不準確性（A）來自於 LLM 的幻覺（Hallucination），需人為監督。偏見問題（B）則源於訓練資料中的歧視性內容（垃圾進，垃圾出）。這兩點是企業導入 AI 時最需警惕的紅線。","src":"公開參考題庫（80 題）","opts":["由於缺乏人為監督，存在不準確的問題","歧視性輸入會導致偏見","預測或回覆中充滿情緒","由於缺乏創造力，生成的內容單調","缺乏自動化，導致效率低下"]},{"id":"72","zone":4,"type":"group","q":"針對驗證人工智慧（AI）輸出關於歷史資料的準確性，下列每項表述是否能可靠地驗證準確性？正確為「O」，錯誤為「X」：","a":"","exp":"驗證歷史準確性的黃金準則在於「外部獨立性」。網路搜索與歷史資料集屬於「接地（Grounding）」驗證，透過第三方權威機構檢核。使用另一個 AI 平台（X）被稱為「循環論證」，因為不同模型可能使用相似的訓練資料集，導致一致的錯誤。","src":"公開參考題庫（80 題）","subs":[{"q":"在網際網路上進行搜索，查證學術資源中的事實。","a":"O"},{"q":"參考可靠的歷史資料集以查證事實。","a":"O"},{"q":"使用另一個人工智慧（AI）平台查證事實。","a":"X"}]},{"id":"73","zone":4,"type":"group","q":"你要評估以下提示詞是否存在固有偏見。對於每個提示詞示例，如果提示詞存在固有偏見為「O」，無偏見為「X」：","a":"","exp":"這題分辨「引導式提示（Leading Prompt）」與「分析式提示」。第一個示例雖然要求客觀，但開頭已預設結論（「強調...比化石燃料更可靠」），這會誘導 AI 忽略反對證據（有偏見, O）。第三個示例同樣預設立場（「強調太陽能卓越」，有偏見, O）。只有第二個示例要求「分析優缺點」並「客觀展示」，給予 AI 雙向檢索的空間（無偏見, X）。","src":"公開參考題庫（80 題）","subs":[{"q":"強調在城市環境中，可再生能源（太陽能、風能、水能和地熱能）比化石燃料的能耗更低、也更可靠。考慮能源輸出、環境影響和可擴展性等因素。提供公正客觀的分析，而不偏向於任何特定的可再生能源。","a":"O"},{"q":"分析在城市環境中，各種可再生能源（太陽能、風能、水能和地熱能）的優缺點。重點關注能源輸出、成本、環境影響和可擴展性等指標。客觀地展示預期的結果。","a":"X"},{"q":"比較太陽能和風能的潛能，瞭解它們有多大可能徹底改變供電系統。強調太陽能卓越的環境效益和長期成本節省，同時涵蓋在人口密集地區安裝風能設備面臨的挑戰。","a":"O"}]},{"id":"74","zone":4,"type":"single","q":"甲使用生成式 AI 建立圖片，該圖片描繪乙從事非法活動。甲共用了這張圖片，標題寫「看看乙在做什麼！」。這張圖片迅速爆紅。這是否合法？","a":"A","exp":"即便圖片是 AI 生成的，但甲「主觀上」具有傳播不實資訊的意圖，且「客觀上」該圖片足以損害乙的名譽。在法律上這屬於「誹謗罪」。法律責任不會因為工具是 AI 就轉移（選項 D 錯誤），也不會因為不是真實照片就豁免（選項 B 錯誤）。","src":"公開參考題庫（80 題）","opts":["不合法。這被視為誹謗，屬於非法行為。","合法。因為甲沒有使用乙的真實照片。","不合法。因為生成式 AI 不遵循版權法。","合法。因為是生成式 AI 建立的圖片，而不是甲建立的。"]},{"id":"75","zone":4,"type":"group","q":"每種類型的法律侵權與人工智慧（AI）生成的輸出進行配對。A. 版權侵權 | B. 商標侵權 | C. 專利侵權","a":"","exp":"這題釐清了 AI 產出物在法律上的定位：樂譜、文字、畫作屬於「版權（著作權）」保護的表達方式（A）；品牌標識（Logo）屬於「商標權」（B）；技術方案與工程設計圖則屬於「專利權」（C）。","src":"公開參考題庫（80 題）","subs":[{"q":"一段樂譜與一位作曲家譜寫的樂譜雷同","a":"A","options":["A","B","C"]},{"q":"一個商標 Logo 與某運動品牌公司註冊的商標 Logo 相同","a":"B","options":["A","B","C"]},{"q":"一部 3D 相機的詳細工程圖和程式與某數碼產品公司已備案的工程圖和程式非常相似","a":"C","options":["A","B","C"]}]},{"id":"76","zone":4,"type":"single","q":"某保健食品公司使用 AI 收集購買減肥產品的客戶的姓名、地址、電話號碼和健康詳細資訊。如果該公司不採取必要的預防措施，防止使用這些資料訓練生成式 AI 模型，可能會產生哪三種後果？","a":"A,B,C","exp":"將客戶敏感數據餵給 AI 訓練會引發：身分盜用（A，模型洩露個資）、個資法訴訟（B，違反法規）、信任崩潰（C，聲譽受損）。選項 D 提到的是公共資訊，其風險層級低於上述三項涉及個人隱私的嚴重後果。","src":"公開參考題庫（80 題）","opts":["客戶身份被盜用","陷入消費者資料隱私的訴訟","客戶缺乏信任","公司的公共資訊可能會暴露。"]},{"id":"77","zone":4,"type":"group","q":"針對作為測試中心管理員，你需要回答將資料庫（含帳號、姓名、密碼和分數）上傳到 ChatGPT 進行分析存在哪些危害。為每個問題選擇正確的回覆：","a":"","exp":"上傳含帳號、密碼的資料庫到公開 AI 服務，資訊會存在於當前對話與平台紀錄中（A）；平台可透過 IP 位址、帳號與裝置指紋等紀錄進行關聯（B：是），因此不能假設匿名。一旦機密外洩，責任由使用者與其所屬公司承擔（A），不會由 AI 供應商負責。","src":"公開參考題庫（80 題）","subs":[{"q":"ChatGPT 會記住帳號和密碼多長時間？","a":"A","options":["A. 它會在當前對話中記住這些資訊。","B. 它會永久性記住這些資訊。","C. 它會暫時儲存帳號和個人資料。"]},{"q":"在後續對話中，ChatGPT 是否可以將你的 IP 位址與這些資料相關聯？","a":"B","options":["A. 否。","B. 是。"]},{"q":"如果在與 ChatGPT 的對話期間，測試參加者的密碼因網路攻擊遭到洩露，會發生什麼？","a":"A","options":["A. 你和你的公司將承擔責任。","B. ChatGPT 將承擔責任。"]}]},{"id":"78","zone":4,"type":"single","q":"科學老師在試卷中暗藏陷阱：他使用了與背景色同色的字體，鍵入了大量與論文主題不相關的資訊。如果學生的作答中出現了這些隱藏內容，可以說明什麼？哪一個選項包含了老師這樣做的兩個原因？","a":"A","exp":"這是一個經典的「蜜罐（Honey Pot）」陷阱或「白色字體陷阱」。人類讀者看不到隱藏字，但 AI 會讀取並總結。如果學生的總結中出現了那些不相關資訊，即證明了學生未親自閱讀而直接使用 AI。這旨在維護學術誠信與原創性。","src":"公開參考題庫（80 題）","opts":["瞭解學生是否使用人工智慧（AI）編寫了這段內容總結。這將是作弊行為，以及確保學生負責撰寫原創作品。","瞭解學生是否使用人工智慧（AI）編寫了這段內容總結。這將是作弊行為，以及幫助學生提供有創意的分析。","確保學生負責撰寫原創作品，以及提示學生重新閱讀他們的作業，並修正任何拼寫和語法錯誤。","幫助學生提供有創意的分析，以及提示學生重新閱讀他們的作業，並修正任何拼寫和語法錯誤。"]},{"id":"79","zone":4,"type":"group","q":"針對生成式 AI 對教育的影響，下列每個表述是否對教育領域有重大影響？正確為「O」，錯誤為「X」：","a":"","exp":"提交非原創作品（O）是教育界目前面臨的最大衝擊。AI 作為最強的客製化助教，能補充課程內容（O）。然而，教師並未因此大量失業（X），因為教育涉及情感聯結與價值觀引導，AI 無法完全取代教師的角色。","src":"公開參考題庫（80 題）","subs":[{"q":"學生使用生成式 AI 提交並非自己撰寫的作品。","a":"O"},{"q":"有效的專任教師職位已被取消或大幅減少。","a":"X"},{"q":"生成式 AI 可以用來補充課程內容。","a":"O"}]},{"id":"80","zone":4,"type":"single","q":"使用生成式 AI 對社會既有積極影響，也有消極影響。哪一個選項包含了三種生成式 AI 的積極影響？","a":"A","exp":"AI 的正向價值在於「效率提升與知識獲取」：如醫學研究（加速藥物發現）、精準農業（高效耕作）與文化傳播（了解世界文化）。選項 B/C/D 中提到的「避免溝通」或「不做功課」屬於消極副作用，並非積極影響。","src":"公開參考題庫（80 題）","opts":["可以使用生成式 AI 訪問海量資料以進行醫學研究、可以使用生成式 AI 促進高效耕作、可以使用生成式 AI 詳細瞭解世界文化。","可以使用生成式 AI 訪問海量資料以進行醫學研究、可以使用生成式 AI 避免人與人的溝通交流、可以使用生成式 AI 促進高效耕作。","可以使用生成式 AI 訪問海量資料以進行醫學研究、可以使用生成式 AI 避免人與人的溝通交流、可以使用生成式 AI 做家庭作業，而無需學習相關材料。","可以使用生成式 AI 避免人與人的溝通交流、可以使用生成式 AI 促進高效耕作、可以使用生成式 AI 做家庭作業，而無需學習相關材料。"]},{"id":"81","zone":1,"type":"single","q":"下列哪一項最能定義「生成式 AI（Generative AI）」？","a":"B","exp":"生成式 AI 的核心是「產生過去不存在的新內容」；分類屬於鑑別式 AI，檢索清單屬於搜尋引擎，統計計算屬於分析式 AI。","src":"自編（依官方考綱）","opts":["依歷史資料把既有樣本分類到預先定義的類別","產生全新的文字、圖像、音訊或影片內容","只在資料庫中檢索並回傳既有網頁清單","計算資料的平均值與標準差以產生報表"]},{"id":"82","zone":1,"type":"single","q":"生成對抗網路（GAN）是由哪兩個網路互相對抗而運作？","a":"B","exp":"GAN 由生成器製造假樣本、判別器判斷真偽，兩者在對抗中共同進步；編碼器／解碼器是 Autoencoder 架構。","src":"自編（依官方考綱）","opts":["編碼器（Encoder）與解碼器（Decoder）","生成器（Generator）與判別器（Discriminator）","卷積層（Convolution）與池化層（Pooling）","注意力層（Attention）與前饋層（Feed Forward）"]},{"id":"83","zone":1,"type":"single","q":"變分自動編碼器（VAE）產生新內容的主要原理是什麼？","a":"A","exp":"VAE 把輸入壓縮成潛在空間的分布（均值與變異數），取樣後解碼，因此能生成風格連續變化的新樣本。","src":"自編（依官方考綱）","opts":["學習資料在潛在空間的機率分布，再從中取樣後解碼成新樣本","用判別器不斷否決生成器的輸出","以 n-gram 統計詞頻後直接拼接句子","用決策樹對每個像素逐一分類"]},{"id":"84","zone":1,"type":"single","q":"Transformer 模型能夠處理長篇文字脈絡，最關鍵的機制是什麼？","a":"A","exp":"自注意力讓模型同時衡量句中每個詞與其他詞的關聯強度，這是 GPT、Gemini、Claude、LLaMA 等文字模型的共同基礎。","src":"自編（依官方考綱）","opts":["自注意力機制（Self-Attention）","卷積核（Convolution Kernel）","遞迴迴路（Recurrent Loop）","隨機森林（Random Forest）"]},{"id":"85","zone":1,"type":"single","q":"擴散模型（Diffusion Model）生成圖像的基本概念是什麼？","a":"B","exp":"擴散模型先學會「加噪」，再反向學會「去噪」，生成時從純雜訊逐步還原成圖像；DALL-E、Stable Diffusion、Firefly 都屬於此類。","src":"自編（依官方考綱）","opts":["從一張既有圖片中裁剪拼貼出新圖","從隨機雜訊開始，逐步去噪還原出符合提示詞的圖像","從資料庫中找出最相似的圖片後回傳","用文字直接對照查表取得圖像"]},{"id":"86","zone":1,"type":"group","q":"下列關於生成式 AI 模型訓練的敘述，正確為「O」，錯誤為「X」：","a":"","exp":"圖像模型靠大量「文字描述＋對應圖片」的配對學習語意對應；LLM 需要海量語料；訓練需大量 GPU 算力與電力，是實質成本與環境負擔。","src":"自編（依官方考綱）","subs":[{"q":"影像生成模型通常以「人工標註的文字—影像配對」資料進行訓練。","a":"O"},{"q":"大型語言模型需要的訓練資料量越大，通常表現越穩定。","a":"O"},{"q":"訓練模型只消耗軟體授權成本，與算力和電力無關。","a":"X"}]},{"id":"87","zone":1,"type":"single","q":"企業要在「目的與功能、易用性、成本、更新支援、資料隱私與安全、輸出可控性」之間挑選生成式 AI 工具，下列哪一項考量最不恰當？","a":"C","exp":"考綱列出的選型考量是功能、易用性、成本、支援、隱私安全、品質與可控性；視覺設計並非評估指標。","src":"自編（依官方考綱）","opts":["工具是否能滿足實際任務目的與功能","工具的資料隱私政策與安全機制","工具官方網站的配色與動畫效果","工具是否提供輸出參數與自訂能力"]},{"id":"88","zone":1,"type":"single","q":"你想建立一個只處理「公司客服問答」的專屬 AI 助理，最直接可行的做法是什麼？","a":"A","exp":"自訂 GPT、Google Gems、Microsoft Copilot 都屬於「以指令＋知識庫封裝既有模型」的客製化方式，不需重新訓練。","src":"自編（依官方考綱）","opts":["在工具中設定指令（Instructions）並上傳知識庫文件，建立自訂 GPT／Gems／Copilot","從零開始重新訓練一個基礎模型","自行撰寫 GPU 核心程式改寫模型權重","只有模型原廠才能建立專屬助理"]},{"id":"89","zone":1,"type":"single","q":"你用同一個提示詞要求 AI 畫出「顯示 3 點 15 分的時鐘」，多次生成卻出現不同時間。這最能說明生成式 AI 的哪一項限制？","a":"A","exp":"考綱明列「一致性（consistency）」是生成式 AI 的限制，例如兩個時鐘顯示不同時間；這與聯網或錯字無關。","src":"自編（依官方考綱）","opts":["輸出缺乏一致性","模型遭到駭客入侵","提示詞一定有錯字","模型沒有連上網際網路"]},{"id":"90","zone":1,"type":"single","q":"把一段「文字腳本」轉成「有人聲朗讀的語音」，屬於哪一種輸入到輸出的組合？","a":"A","exp":"輸入是文字、輸出是語音，即 TTS；反過來把錄音轉成逐字稿才是 STT。","src":"自編（依官方考綱）","opts":["文字轉語音（Text-to-Speech）","語音轉文字（Speech-to-Text）","文字轉文字（Text-to-Text）","影像轉影像（Image-to-Image）"]},{"id":"91","zone":1,"type":"single","q":"下列哪一項「不是」生成式 AI 與搜尋引擎共同的特性？","a":"B","exp":"「生成未曾存在的新內容」是生成式 AI 獨有；搜尋引擎只索引既有網頁，但會標明來源，這是兩者最關鍵的差異。","src":"自編（依官方考綱）","opts":["兩者都可能提供錯誤或過時的資訊","兩者都能產生網路上完全不存在的全新內容","兩者都需要一定的網路與運算資源","兩者的輸出都需要使用者自行判斷可信度"]},{"id":"92","zone":2,"type":"single","q":"你要 AI 摘要一份 30 頁的市場報告，希望輸出一致且可直接放進主管會議。哪個提示詞最合適？","a":"B","exp":"有效的摘要提示詞要指定「數量、長度、必留資訊、輸出結構」；A 過於籠統，C、D 沒有指定任務。","src":"自編（依官方考綱）","opts":["「幫我摘要這份報告。」","「用 5 個要點摘要這份報告，每點 25 字內，保留所有營收與成長率數字，並在最後列出 3 項風險。」","「這份報告很長，請快一點。」","「你覺得這份報告寫得好嗎？」"]},{"id":"93","zone":2,"type":"single","q":"你手上有一份會議紀錄，想轉成可追蹤的待辦清單。哪個提示詞最符合「內容轉換」的考綱要求？","a":"A","exp":"考綱 2.2 要求「重新格式化內容以符合需求」，指定輸出格式與欄位就是最具體的轉換指令。","src":"自編（依官方考綱）","opts":["「把會議紀錄整理成表格，欄位為：負責人、任務、期限、優先順序；未提及期限者標示『未定』。」","「這場會議開得好嗎？」","「重寫會議紀錄，越長越好。」","「幫我安排下一次會議。」"]},{"id":"94","zone":2,"type":"single","q":"你要把一份中文技術合約翻成英文，並確保「force majeure」等術語全篇譯法一致。最有效的做法是什麼？","a":"B","exp":"考綱 3.2 明列「提供術語表（glossary）」是提升翻譯品質的補充輸入，可確保專有名詞一致。","src":"自編（依官方考綱）","opts":["直接說「翻成英文」","在提示詞中附上中英術語對照表，要求依表翻譯且不得自行替換","分批丟給不同工具各翻一半","只翻標題，其餘自行處理"]},{"id":"95","zone":2,"type":"single","q":"你附上一張自家門市的照片，想請 AI 說明照片裡有哪些商品與動線問題。這屬於哪一類圖像提示任務？","a":"A","exp":"考綱 2.3 的「描述影像內容」是以圖片為輸入、以文字為輸出；生成與轉換是不同子項目。","src":"自編（依官方考綱）","opts":["描述（總結）既有影像內容","從無到有生成全新影像","把影像轉成影片","對影像壓縮檔案大小"]},{"id":"96","zone":2,"type":"single","q":"設計師想把一張現代建築照片改成「19 世紀印象派油畫」風格。哪個提示詞最直接對應考綱的「影像轉換」？","a":"A","exp":"以既有圖片為基礎改變風格、同時保留主體結構，就是 image-to-image 的影像轉換；B 屬於全新生成。","src":"自編（依官方考綱）","opts":["「把附圖轉換為印象派油畫風格，保留原本建築結構與構圖。」","「畫一棟房子。」","「這張照片的檔案格式是什麼？」","「幫我寫一段介紹這棟建築的文字。」"]},{"id":"97","zone":2,"type":"single","q":"你只有一張人物靜態照，想做成 5 秒短片，讓人物眨眼、微笑並微微轉頭。哪個提示詞最合適？","a":"B","exp":"考綱 2.4 的「為影像加入動態（adding motion to images）」就是以靜態圖為輸入生成短影片，需說明動作與鏡頭。","src":"自編（依官方考綱）","opts":["「把這張照片壓縮成 5MB。」","「以這張照片生成 5 秒影片，人物眨眼、微笑並略微轉頭，鏡頭保持固定。」","「幫這張照片加上浮水印。」","「把照片轉成 PDF。」"]},{"id":"98","zone":2,"type":"single","q":"你有一段 2 分鐘的產品介紹影片，需要產生中文字幕檔。這屬於考綱中哪一項影片任務？","a":"A","exp":"把語音辨識成文字並輸出時間軸字幕，即自動字幕；插補是補足影格、上色是修復黑白片。","src":"自編（依官方考綱）","opts":["自動生成字幕（Automated subtitling）","影像插補（Interpolation）","黑白影片上色（Colorizing）","生成虛擬主播（Avatar）"]},{"id":"99","zone":2,"type":"single","q":"校園影片中有一位穿亮綠色外套的學生從左向右穿過畫面，影片不能重拍。要用 AI 移除他並保留原背景，哪個指令最有效？","a":"B","exp":"物件移除需要明確指出「對象特徵＋位置＋移動方向」並要求背景修補；裁切與調色都會破壞原始內容。","src":"自編（依官方考綱）","opts":["「把畫面左半邊和右半邊都裁掉。」","「移除畫面中穿亮綠色外套、由左向右移動的學生，並用周圍背景補齊該區域。」","「把整段影片調成黑白，這樣就看不到綠色。」","「在該學生身上覆蓋字幕說明。」"]},{"id":"100","zone":2,"type":"single","q":"團隊要為新產品想 20 個行銷標語。哪一組提示詞最有助於「內容創作與發想（ideation）」？","a":"A","exp":"發想型提示需給「數量、長度、訴求主軸、語氣與限制條件」，才能得到可用且多樣的原創點子。","src":"自編（依官方考綱）","opts":["「列出 20 個 12 字以內、主打『省時』的標語，語氣年輕口語，避免使用驚嘆號。」","「幫我寫一份 20 頁的行銷計畫書。」","「上一季的營業額是多少？」","「把這份合約翻成日文。」"]},{"id":"101","zone":2,"type":"single","q":"你要把一份充滿術語的技術文件，改寫成國中生也能懂的說明。哪個提示詞最符合「個人化與調整內容以促進學習」？","a":"A","exp":"考綱 2.2 的「個人化並調整內容以利學習與理解」，關鍵是明確指定目標讀者、句長與例子要求。","src":"自編（依官方考綱）","opts":["「用國中生能理解的語言改寫，每段不超過 3 句，並各舉一個生活化例子。」","「把文件縮短一半。」","「保留所有原文術語，不要改寫。」","「把文件轉成 PDF。」"]},{"id":"102","zone":3,"type":"single","q":"你輸入「寫一篇關於電動車的文章」，輸出空泛。下列哪一項改寫最能提升「具體程度（specificity）」？","a":"A","exp":"考綱 3.1 要求「在正確的具體層級建立提示詞」：主題、字數、讀者、必含元素都要寫清楚。","src":"自編（依官方考綱）","opts":["「寫一篇 800 字文章，主題為臺灣 2024 年電動車充電樁分布困境，讀者為一般消費者，包含 3 個具體數據與 1 段結論。」","「寫好一點。」","「再寫一次。」","「寫長一點的文章。」"]},{"id":"103","zone":3,"type":"single","q":"提示詞開頭寫「你是一位有 15 年經驗的財務分析師，請以保守穩健的角度分析這份財報」。這主要運用了哪一種優化技巧？","a":"A","exp":"賦予 AI 角色與立場，就是考綱 3.1 的 persona 技巧；few-shot 是提供範例，chaining 是拆解任務串接。","src":"自編（依官方考綱）","opts":["設定角色（Persona）","少樣本提示（Few-shot）","提示詞鏈接（Prompt Chaining）","自一致性（Self-consistency）"]},{"id":"104","zone":3,"type":"single","q":"公司要求所有對外文案的語氣一致。除了在提示詞寫「語氣正式」，最有效的補充輸入是什麼？","a":"A","exp":"考綱 3.1 的 style 項目明確建議「附上風格指南」；考綱 3.2 也把範例文件列為有效補充輸入。","src":"自編（依官方考綱）","opts":["附上公司的品牌語氣指南（style guide）與 2 篇範例文案","每次重新描述一次「正式」的定義","要求 AI 自行猜測公司風格","把輸出字體改成新細明體"]},{"id":"105","zone":3,"type":"single","q":"你在提示詞中先給 3 組「問題→理想答案」的示範，再要求 AI 回答新問題。這是哪一種技巧？","a":"A","exp":"提供範例讓模型模仿格式與判斷標準即 few-shot；完全不給範例則為 zero-shot。","src":"自編（依官方考綱）","opts":["少樣本提示（Few-shot prompting）","零樣本提示（Zero-shot prompting）","反向提示（Reverse prompting）","提示詞鏈接（Prompt chaining）"]},{"id":"106","zone":3,"type":"single","q":"你要 AI 解一道多步驟的成本計算題，並要求「先列出計算步驟與理由，再給最終答案」。這屬於哪一種技巧？","a":"A","exp":"要求模型先鋪陳推理步驟再作答，即 CoT；對計算、邏輯與多步驟推理特別有效。","src":"自編（依官方考綱）","opts":["思維鏈（Chain-of-Thought）","零樣本提示","提示詞鏈接","反向提示"]},{"id":"107","zone":3,"type":"single","q":"對於同一個高風險的判斷題，你要求 AI 以不同角度獨立推理 5 次，再取「多數一致的結論」。這是哪一種技巧？","a":"A","exp":"多次獨立推理後取多數共識，可降低單一路徑的隨機錯誤，即 self-consistency。","src":"自編（依官方考綱）","opts":["自一致性（Self-consistency）","少樣本提示","角色設定","提示詞鏈接"]},{"id":"108","zone":3,"type":"single","q":"你要完成一份市場分析：先請 AI 整理產業現況，再把結果丟進第二個提示詞做 SWOT，最後產出簡報大綱。這是哪一種技巧？","a":"A","exp":"把大任務拆成子任務，並以前一步的輸出作為下一步的輸入，即 prompt chaining。","src":"自編（依官方考綱）","opts":["提示詞鏈接（Prompt chaining）","零樣本提示","自一致性","反向提示"]},{"id":"109","zone":3,"type":"single","q":"你不確定該提供哪些細節，於是先對 AI 說：「請先問我 5 個問題，等我回答後再幫我寫履歷。」這屬於哪一種技巧？","a":"A","exp":"由 AI 反向提問、引導使用者補足需求與脈絡，就是 reverse prompting，能有效補齊「AI 不會自己知道的背景」。","src":"自編（依官方考綱）","opts":["反向提示（Reverse prompting）","少樣本提示","思維鏈","提示詞鏈接"]},{"id":"110","zone":3,"type":"single","q":"AI 告訴你「某國 2023 年 GDP 成長率為 4.2%」。要驗證這個數值，最可靠的做法是什麼？","a":"B","exp":"考綱 3.5 要求以權威外部來源驗證「歷史事實、時事與數值資料」；反覆問同一個模型或看社群討論都不算驗證。","src":"自編（依官方考綱）","opts":["再問同一個 AI 一次，看答案是否相同","查該國官方統計局或世界銀行、IMF 等權威資料庫","看社群平台上是否有相同說法","直接採用，因為數字看起來很精確"]},{"id":"111","zone":3,"type":"single","q":"AI 產出的內容明顯偏離公司內部流程，最可能的原因是提示詞缺少哪一項要素？","a":"A","exp":"考綱 3.1 指出 AI 是機器，無法自行推得情境，必須在提示詞中提供背景、對象與限制條件。","src":"自編（依官方考綱）","opts":["情境（Context）與背景資料","驚嘆號與表情符號","更長的輸出長度","更多的錯字修正"]},{"id":"112","zone":4,"type":"single","q":"生成式 AI 的偏見最可能來自下列哪些來源？（請選出最完整的組合）","a":"B","exp":"考綱 4.1：偏見可來自訓練資料、模型建立者加入的護欄（部分工具可開關），也會被提示詞誘發。","src":"自編（依官方考綱）","opts":["只來自使用者的提示詞","訓練資料、模型開發者設定的護欄，以及使用者撰寫的提示詞","只來自模型的運算速度","只來自網路連線品質"]},{"id":"113","zone":4,"type":"single","q":"下列哪一組最完整列出考綱中提到的常見偏見類型？","a":"A","exp":"考綱 4.1(v) 明列性別、種族、身心障礙、年齡、宗教、文化、語言、國籍與經濟地位等九類常見偏見。","src":"自編（依官方考綱）","opts":["性別、種族、身心障礙、年齡、宗教、文化、語言、國籍、經濟地位","只包含性別與年齡","只包含語言與國籍","偏見不屬於生成式 AI 的討論範圍"]},{"id":"114","zone":4,"type":"single","q":"你打算把 AI 生成的插圖用於產品包裝並大量販售。依考綱的智財觀點，最應優先確認什麼？","a":"B","exp":"考綱 4.2：智財相關法律仍在變動，最穩妥的做法是確認授權與素材來源、避免未經同意使用他人作品。","src":"自編（依官方考綱）","opts":["圖片解析度是否足夠","工具授權條款是否允許商業使用，以及是否可能侵害他人著作權","圖片是否為正方形","圖片檔名是否符合命名規則"]},{"id":"115","zone":4,"type":"single","q":"在專業環境使用生成式 AI 時，「透明度（Transparency）」的具體做法是什麼？","a":"B","exp":"考綱 4.2(iii) 要求以文件化方式記錄使用 AI 的過程，讓責任與來源可被追溯。","src":"自編（依官方考綱）","opts":["不要告訴任何人你用了 AI","記錄並揭露 AI 參與的流程與範圍，例如在文件中說明使用的工具與人工審核方式","只使用最貴的模型","把 AI 產出直接當成官方結論發布"]},{"id":"116","zone":4,"type":"single","q":"下列哪一組資料屬於「個人可識別資訊（PII）」，最不適合直接貼進公開的生成式 AI 對話框？","a":"B","exp":"姓名、地址、電話與健康資料可直接識別個人，一旦被用於訓練或外洩，可能導致身分盜用與民事、刑事責任。","src":"自編（依官方考綱）","opts":["公司的產品規格書封面","客戶姓名、地址、電話號碼與健康檢查結果","公開新聞稿的行銷標語","政府公開的統計年報"]},{"id":"117","zone":4,"type":"single","q":"企業要避免員工把機密資料貼進未經核准的公開 AI 工具，最有效的做法是什麼？","a":"B","exp":"考綱 4.3(iv)：企業正建立內部政策以防員工把資料外洩到公開或未經核准的模型；政策＋工具清單＋訓練才可落地。","src":"自編（依官方考綱）","opts":["只在公告中提醒「請小心」","建立內部 AI 使用政策，提供經核准的工具清單與資料分級規範，並要求教育訓練","禁止員工上班使用電腦","完全不做任何處理，出事再處理"]},{"id":"118","zone":4,"type":"single","q":"關於「深偽（Deepfake）」的風險，下列敘述何者最正確？","a":"B","exp":"考綱 4.4(ii)：生成式 AI 可被用於危險用途，包括深偽；你必須對自己建立的內容負責，可能引發民、刑事責任。","src":"自編（依官方考綱）","opts":["深偽只是娛樂效果，沒有法律風險","深偽可被用於誹謗、詐欺與操弄選舉，製作與散布者可能面臨民事與刑事責任","深偽影片一定要有真人原始素材才能製作","只要標註「AI 生成」就完全免除法律責任"]},{"id":"119","zone":4,"type":"single","q":"AI 幫你寫完一份給客戶的合約說明，其中可能含有錯誤條文解讀。誰該負最終責任？","a":"B","exp":"考綱 4.4：你必須對自己建立與發布的內容負責，生成式 AI 需要人類監督，錯誤資訊可能帶來財務與法律後果。","src":"自編（依官方考綱）","opts":["模型供應商","輸入提示詞的你與你所屬的公司","提供網路連線的電信商","沒有人需要負責"]},{"id":"120","zone":4,"type":"single","q":"下列哪一組最能代表生成式 AI 對社會的「負面」影響？","a":"B","exp":"考綱 4.5 將「人際互動減少、過度依賴、就業與人性焦慮、AI 資源分配不均」列為負面影響；A、C、D 屬正面影響。","src":"自編（依官方考綱）","opts":["提升工作效率、跨語言溝通、輔助學習","減少人際互動、過度依賴導致動機下降、加劇數位落差與就業焦慮","創造新的職務類型、協助腦力激盪","加快醫學研究與精準農業"]}];
+const DATA = [{"id":"1","zone":1,"type":"group","q":"下列關於生成式 AI 的敘述，正確為「O」，錯誤為「X」：","a":"","exp":"傳統搜尋引擎只索引既有內容；生成式 AI 底層是神經網路，能從無到有產出文字、圖像、程式碼。","src":"公開參考題庫（80 題）","subs":[{"q":"生成式 AI 僅根據搜尋條件提供結果清單。","a":"X"},{"q":"生成式 AI 使用神經網路來建立輸出。","a":"O"},{"q":"生成式 AI 可以建立文字、圖像和語音等新內容。","a":"O"}]},{"id":"2","zone":1,"type":"single","q":"你正在研究一系列資料，想要估算出 2200 年地球上的平均溫度。哪種類型的人工智慧最適合執行此任務？","a":"A","exp":"預測式 AI 專門用來估算未來趨勢，根據歷史氣候數據推算機率最高的未來數值。鑑別式用於分類；擴散式與 VAE 是圖像生成技術。","src":"公開參考題庫（80 題）","opts":["預測式 AI (Predictive AI)","鑑別式 AI (Discriminative AI)","擴散式 AI (Diffusion AI)","變分自動編碼器 (VAE)"]},{"id":"3","zone":1,"type":"single","q":"訓練大型語言模型（LLM）的基本流程包含：①收集資料集 ②預處理和清理資料 ③準備要輸入的資料 ④微調超參數。下列哪一個順序正確？","a":"A","exp":"訓練大型語言模型的基本流程為：①收集資料集 → ②預處理與清理資料 → ③準備要輸入的資料（分詞、格式化）→ ④微調超參數。資料一定是流程的起點，超參數調整發生在訓練階段，因此順序為 1→2→3→4。","src":"公開參考題庫（80 題）","note":"社群流通版本此題標示 B（4→3→2→1），屬重新詮釋；依官方考綱「基本流程」與實務訓練順序，正解為 A。","opts":["1→2→3→4","4→3→2→1","1→3→2→4","4→3→1→2"]},{"id":"4","zone":1,"type":"single","q":"作家想測試電影劇本在不同口音下的對話效果。應使用哪種 AI？","a":"A","exp":"將文字劇本具現化為「不同口音的聲音」，正是 TTS 的核心功能。現代 TTS 能模擬語速、情緒與地區口音。","src":"公開參考題庫（80 題）","opts":["基於文字生成語音（Text-to-Speech）","基於文字生成文字","基於語音生成文字","基於影音生成圖片"]},{"id":"5","zone":1,"type":"single","q":"製作以「思念」為主題的海報，包含社區成員的引言與動物詳細資訊。哪兩種生成式輸出類型最有幫助？","a":"A","exp":"引言是文字，動物資訊需要圖像呈現。靜態平面海報的核心是「圖文整合」，不需要語音或影片。","src":"公開參考題庫（80 題）","opts":["圖像和文字","圖像和語音","語音和影片","文字和影片"]},{"id":"6","zone":1,"type":"single","q":"你要建立客製化的 Microsoft Copilot 來完成特定任務。如何實現客製化？","a":"A","exp":"客製化 Copilot 無需編寫程式碼，只需在設定介面輸入 Instructions（指令）與 Knowledge Base（知識庫），即可賦予 AI 專屬能力。這稱為「封裝提示詞」。","src":"公開參考題庫（80 題）","opts":["向聊天機器人輸入一個指令和資訊，讓它準備好執行特定任務。","透過編寫一個電腦程式來指導。","必須對整個大型語言模型進行再訓練。","只有原公司才能生成。"]},{"id":"7","zone":1,"type":"single","q":"你想創作融合莎士比亞和 J.K. 羅琳風格的新作品，可存取兩位作家的全集。如何建立程式實現此目標？","a":"A","exp":"Transformer 架構的自注意力機制能捕捉文字間的長距離風格關聯。擴散模型用於圖像，CNN 擅長影像辨識，確定性演算法無法處理文學風格。","src":"公開參考題庫（80 題）","opts":["使用包含兩者作品的 Transformer 模型並部署 GPT。","對現有基於 Diffusion 的 GPT 進行微調。","實施卷積神經網路進行分類。","基於詞類相關的 AI 技術，開發確定性的演算法程式。"]},{"id":"8","zone":1,"type":"single","q":"你想為企業建立商標、商業計畫和使用宣言，希望使用現成的解決方案，不想自行建構。哪種 AI 平台最適合？","a":"A","exp":"ChatGPT 整合了 DALL-E 3（商標圖像）與 GPT-4（商業計畫文案），是最完整的一站式現成解決方案。Azure 是開發者平台，Stable Diffusion 與 Adobe Firefly 主要用於圖像生成。","src":"公開參考題庫（80 題）","opts":["ChatGPT","Stable Diffusion","Azure AI Studio","Adobe Firefly"]},{"id":"9","zone":1,"type":"group","q":"將正確的 AI 工具與它執行的特定任務進行配對：A.Adobe Express B.Azure AI Studio C.Canva D.ChatGPT","a":"","exp":"Adobe Express：社群圖像字體設計；Azure AI Studio：企業級多 AI 編排；Canva：設計與行銷素材；ChatGPT：全能對話 AI。","src":"公開參考題庫（80 題）","subs":[{"q":"允許生成圖像和獨具風格的字體並發佈到社群媒體。","a":"A"},{"q":"允許您關聯一系列 AI 來執行業務任務。","a":"B"},{"q":"可用於建立設計、簡報和行銷素材。","a":"C"},{"q":"可參與對話、回答問題或提供資訊。","a":"D"}]},{"id":"10","zone":1,"type":"group","q":"有關生成式 AI 的局限性敘述，正確為「O」，錯誤為「X」：","a":"","exp":"機密資料可能被用於訓練（X）；AI 輸出標準尚未統一（X）；幻覺（Hallucination）是 GenAI 天性，必須人工查核（O）。","src":"公開參考題庫（80 題）","subs":[{"q":"你可以假定輸入到任何 GPT 或 Copilot 中的機密資料將不會被用於訓練。","a":"X"},{"q":"存在公認的標準，規定了如何在行業環境中使用生成式 AI 的輸出。","a":"X"},{"q":"你需要對生成式 AI 工具輸出內容進行仔細事實審查，因為這些工具可能會編造內容。","a":"O"}]},{"id":"11","zone":1,"type":"single","q":"哪兩個選項準確提出生成式 AI 的特性？","a":"A,B","exp":"GenAI 底層是機率預測（B），且可透過 Fine-tuning 或 RLHF 重新訓練對齊偏好（A）。特徵工程屬於傳統機器學習，二元分類器與 GenAI 無關。","src":"公開參考題庫（80 題）","opts":["模型可以重新訓練，以便生成更符合預期目的的回覆","生成式 AI 在生成回應時，會利用預測來對回覆中的每個詞進行概率性的選擇。","生成式 AI 模型通常需特徵工程進行訓練","模型會建構一個 A/B 二元分類器，以供搜索演算法遍歷。"]},{"id":"12","zone":1,"type":"group","q":"下列描述屬於生成式 AI 為「O」，搜尋引擎為「X」：","a":"","exp":"GenAI 能合成新內容（O，O）；清楚標示來源是搜尋引擎的特徵（X）。","src":"公開參考題庫（80 題）","subs":[{"q":"能夠根據提示詞生成新的材料","a":"O"},{"q":"能夠生成在任何網站上都找不到的材料","a":"O"},{"q":"總是清楚地說明資訊在網路上的來源","a":"X"}]},{"id":"13","zone":1,"type":"single","q":"生成式 AI 為「生成一張桌子上擺放著一盞檯燈的圖像」所使用的流程順序：①使用雜訊生成隨機像素值 ②使用分詞解析 token ③使用擴散更改數值建立圖像 ④使用優化演算法使圖像更符合提示詞","a":"A","exp":"潛在擴散模型流程：先分詞理解文字（2）→ 投射隨機雜訊（1）→ 擴散去噪讓圖像浮現（3）→ 優化輸出最終圖像（4）。","src":"公開參考題庫（80 題）","opts":["2→1→3→4","1→2→3→4","4→3→2→1","2→3→1→4"]},{"id":"14","zone":1,"type":"single","q":"廣告公司員工要為客戶廣告生成歌詞，客戶提供產品規格文件，你要求客戶再提供產品圖片。你可以在 ChatGPT 中使用哪些輸入類型？","a":"A","exp":"ChatGPT 支援多模態輸入。文件（產品規格）+文字（創作方向）+圖像（視覺氛圍）三者組合能達成最佳創作效果。","src":"公開參考題庫（80 題）","opts":["文件檔案、文字和圖像","僅文件檔案和文字","僅文字和圖像","僅文字"]},{"id":"15","zone":1,"type":"single","q":"歌手向 AI 提交原創歌曲錄音，要求讓開頭部分聽起來有失真效果。使用了哪種 AI？","a":"A","exp":"輸入是錄音（語音），輸出是帶失真效果的錄音（語音）。這是 Speech-to-Speech（S2S）——保留原旋律但改變音質特徵，類似 AI 混音工具。","src":"公開參考題庫（80 題）","opts":["基於語音生成語音（Speech-to-Speech）","基於文字及語音生成文字","基於文字生成語音（Text-to-Speech）","基於文字生成文字"]},{"id":"16","zone":1,"type":"single","q":"服裝設計師希望客戶根據三個問題的回答生成 T 恤設計，設計完成後自動提交給他。如何用生成式 AI 實現？","a":"A","exp":"客製化 GPT（AI Agent）能透過對話收集需求，後台調用 DALL-E 生成設計，並透過 Actions（API）自動提交。單純發佈連結無法實現「自動提交」。","src":"公開參考題庫（80 題）","opts":["建立客製化 GPT。","輸入提示詞用以建構非互動式的網站。","在他的網站上發佈指向 DALL-E 的連結。","在他的網站上發佈指向 Adobe Firefly 的連結。"]},{"id":"17","zone":1,"type":"single","q":"你要製作輔導課業的 ChatGPT AI 工具，需要能對多個科目進行微調。哪種方法最有效？","a":"A","exp":"Transformer 模型具備強大泛化能力，透過 System Prompt 進行角色設定即可調整不同科目行為，無需從頭訓練（成本極高）。擴散模型用於圖像，不適合語言輔導。","src":"公開參考題庫（80 題）","opts":["客製的基於變換器（custom transformer-based）的模型，其中針對每個科目提供了具體指令","預設基於變換器（Transformer-based）的模型，其中針對每個科目提供了具體指令。","客製的基於擴散（custom diffusion-based）的模型","預設基於擴散（default diffusion-based）的模型"]},{"id":"18","zone":1,"type":"single","q":"軟體團隊要開發自動執行貸款申請流程的應用，需執行三項獨立任務（獲取信用記錄、評分、發送通知）。哪種 AI 工具適合通過多代理人工分工推動合作開發？","a":"A","exp":"LangChain 是 AI 編排框架，專門設計多 Agent 協作流程，讓數據在不同工具間流轉。Firefly/Stable Diffusion 是圖像工具，Copilot 是終端產品，都不適合後端邏輯開發。","src":"公開參考題庫（80 題）","opts":["LangChain","Adobe Firefly","Microsoft Copilot","Stable Diffusion"]},{"id":"19","zone":1,"type":"group","q":"下列針對每個場景，結果可能為「O」，不可能為「X」：","a":"","exp":"1.否定指令處理較弱，AI 可能聚焦在「紅色」關鍵字，將畫面變黑白（O）。2.AI 不可能生成它從未見過的未發佈機密（X）。3.相同提示可能產生不同輸出，這是非確定性（Non-determinism）（O）。","src":"公開參考題庫（80 題）","subs":[{"q":"你發出消除紅色的圖像提示詞，AI 生成了黑白圖像。","a":"O"},{"q":"你用公開資訊的結構完善提示詞生成銷售簡報，結果包含未發佈的公司機密資訊。","a":"X"},{"q":"你多次用相同提示詞要求時鐘圖，時鐘顯示的時間有時不一樣。","a":"O"}]},{"id":"20","zone":2,"type":"group","q":"您正在開啟新產品的行銷活動…將每個提示詞類別與提示詞片段進行配對：","a":"","exp":"高品質提示詞的四個關鍵要素：角色 (Role) 賦予身分；指令 (Instruction) 明確任務；上下文 (Context) 提供背景數據；約束條件 (Constraints) 規定語氣與限制。","src":"公開參考題庫（80 題）","subs":[{"q":"「你是一位在目標受眾領域有著豐富經驗的高級行銷經理」","a":"A","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]},{"q":"「根據客戶對新產品的喜好程度，為他們生成郵件」","a":"B","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]},{"q":"「我們需要為清單 [連結] 中的每個人生成電子郵件」","a":"C","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]},{"q":"「語態上應模仿一個有好消息要告訴你的摯友」","a":"D","options":["A. 生成式 AI 假定角色","B. 特定指令","C. 完整的提示詞上下文","D. 約束條件及舉例"]}]},{"id":"21","zone":2,"type":"single","q":"Kenneth 想使用生成式 AI 制定度假計畫，旅程應包括：①美國西部遊玩十天 ②多個戶外自然景點 ③飛往景點區交通樞紐機場 ④租車遊覽景區。哪項提示詞最有可能生成合適的行程？","a":"A","exp":"提示詞的「完整性」決定輸出品質。選項 A 完美覆蓋了所有維度：天數（10 天）、地點（美西）、活動（景點）與物流（機場與租車）。其他選項漏掉了天數或具體的物流需求，可能導致 AI 生成出不可執行的行程。","src":"公開參考題庫（80 題）","opts":["制定一個為期十天的旅行行程，包括飛往距離其中一個景點相對較近的機場，並租車遊覽美國西部的多個著名景點。","制定一個旅行行程，包括前往一個距離相對較近的機場，並租車遊覽美國西部的景觀。","制定一個為期十天的旅行行程，包括租車遊覽美國的五個戶外景點，並飛往一個七月份通常不繁忙的城市機場。","制定一個旅行行程，包括飛往美國西部並參觀當地的景點。"]},{"id":"22","zone":2,"type":"single","q":"哪兩個提示詞可以用於總結現有內容？","a":"A,B","exp":"「總結」任務的目的是壓縮資訊並保留重點。選項 A 屬於從訓練資料中提取精華（擷取式總結）；選項 B 屬於針對提供的上下文進行濃縮（會議摘要）。選項 C 是規劃，D 是創作，E 是程式編寫，均非總結。","src":"公開參考題庫（80 題）","opts":["「托爾金的《魔戒》的情節是什麼？請用 500 字概括。」","「今天會議的主要議題是什麼？（並同時提供了會議記錄。）」","「我將在邁阿密度假兩周，可以做哪些有趣的事？」","「寫一首詩，詩的內容講的是一隻穿著紅馬甲的魔法兔子。」","「使用 Python 生成一個程式，該程式通過詢問你的生日來告知你的年齡。」"]},{"id":"23","zone":2,"type":"group","q":"你想用 AI 生成攀登吉力馬札羅山的計畫。請將有效提示詞的各部分配對正確選項：","a":"","exp":"這模擬了思維鏈（CoT）的建構過程：1. 明確目標（攀登吉力馬札羅山）；2. 針對痛點（初學者路線）；3. 環境約束（旱季，考量安全性）；4. 平衡預算與專業（專業且實惠的導遊）。","src":"公開參考題庫（80 題）","subs":[{"q":"我想：","a":"D","options":["A. 飛往非洲","B. 登頂最大的山峰","C. 到訪坦尚尼亞","D. 攀登吉力馬札羅山"]},{"q":"查找：","a":"A","options":["A. 最適合初學者的路線","B. 飛往非洲花費最少的航班","C. 花費最少的路線"]},{"q":"將旅行限制為：","a":"C","options":["A. 直飛坦尚尼亞的班機","B. 飛往非洲最便宜的班機","C. 非洲的旱季","D. 僅限不下雨的日子"]},{"q":"選擇：","a":"B","options":["A. 非洲所有優惠價格的導遊","B. 所有專業攀登吉力馬札羅山的價格實惠的導遊","C. 坦尚尼亞所有經濟實惠的導遊","D. 所有在旱季工作價格實惠的導遊"]}]},{"id":"24","zone":2,"type":"group","q":"每個提示詞用於製作或轉換什麼樣的圖像？進行正確配對：","a":"","exp":"影像轉換 (Style Transfer) 是改變風格；探索創想是利用潛在空間進行超現實發散；視覺理解 (VQA) 是分析內容；製作特定用途影像是針對商標等具體需求的設計。","src":"公開參考題庫（80 題）","subs":[{"q":"將附加照片製作成達芬奇的蒙娜麗莎風格的畫作","a":"A","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]},{"q":"繪製幾幅大灰狼參加考試的圖畫","a":"B","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]},{"q":"附加照片中是什麼內容？","a":"C","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]},{"q":"製作一個包含橘色大寫字母「P」的商標，並帶有凸顯綠色的漸層背景。","a":"D","options":["A. 影像轉換","B. 探索一些藝術創想","C. 辨識影像的內容","D. 製作一個用於特定用途的影像"]}]},{"id":"25","zone":2,"type":"single","q":"Jasmine 要創立一家環保草坪服務公司，她輸入提示詞「為一家環保草坪服務公司製作一個商標 Logo。」Jasmine 應該增加哪個提示詞，來製作對受眾更有針對性的商標？","a":"A","exp":"這反映了提示工程中的具體化 (Specificity) 原則。原始提示詞太抽象，選項 A 引入了「青草、鮮花、蜜蜂」等具象元素（Visual Metaphor），這些元素在心理學上與「生態系統」強烈掛鉤，能精確擊中環保意識消費者的痛點。與其說「我要環保」，不如給 AI 具體的視覺物件。","src":"公開參考題庫（80 題）","opts":["添加一個有綠色青草、五顏六色的鮮花和蜜蜂的小院。","這不是我所要做的，能否再建立一個？","建立另一個包含更多內容的圖像。","這是一台不對的割草機，但請讓它更具吸引力。"]},{"id":"26","zone":2,"type":"group","q":"AI 已生成一輛黑色野馬跑車圖像，你希望它看起來像鏡像方向（對稱）。下列哪些提示詞應該使用？正確為「O」，錯誤為「X」：","a":"","exp":"要讓汽車看起來像「對稱」的另一面，正確的操作是「水平鏡像（Horizontal Mirror）」，這會將物體左右對調。「顛倒（Flip Upside Down）」會讓輪胎朝天；「旋轉 180 度」則同時造成上下顛倒與左右對調，方向並不相同。","src":"公開參考題庫（80 題）","subs":[{"q":"顛倒圖像。","a":"X"},{"q":"水平鏡像圖像。","a":"O"},{"q":"將汽車旋轉 180 度。","a":"X"}]},{"id":"27","zone":2,"type":"single","q":"你建立學校吉祥物（鬥牛犬）圖像，收到「學校裡友好的鬥牛犬」這種太過一般的輸出，需要更符合樂隊演奏會場景。應使用哪兩組提示詞？","a":"A,B","exp":"當初始生成結果太過一般化時，需要透過迭代提示（Iterative Prompting）來增加細節層次。選項 A 與 B 透過增加「樂隊指揮服、指揮棒、小號、薩克斯管」等具體道具與服裝，將「鬥牛犬」與「樂隊演奏會」這個特定場景緊密結合，這就是所謂的語境堆疊（Contextual Layering）。","src":"公開參考題庫（80 題）","opts":["一隻友好的鬥牛犬穿著樂隊指揮服，戴著樂隊指揮帽，拿著指揮棒","插圖中有一隻友好的鬥牛犬，穿著學校服樂隊服。正在演奏樂器，例如吹奏小號或薩克斯管","顯示一隻友好的鬥牛犬坐在學校樂隊成員旁邊的觀眾席上。","插圖中有一隻友好的鬥牛犬，穿著學校制服，站在學校前面。"]},{"id":"28","zone":2,"type":"single","q":"學校 30 秒影片中，一名穿著亮綠色毛衣的學生從右側橫穿畫面，影片無法重拍。需從剪輯中刪除這名學生，同時盡可能保留原始內容。應使用哪個 AI 指示詞？","a":"A","exp":"這題觸及了 AI 影片剪輯的核心技術：物件移除（Object Removal）與修復（In-painting）。選項 A 是最專業的作法，AI 會分析前後幀的像素，計算出學生身後的「背景」應該是什麼樣子，並用生成的背景取代，從而無縫修復畫面。剪掉區域會破壞構圖，用文字覆蓋則不符合「保留原始內容」的要求。","src":"公開參考題庫（80 題）","opts":["讓影片中穿著亮綠色毛衣的學生以背景影片取代。","從螢幕的左向右側剪掉穿著淺綠色毛衣的學生。","更改影片的背景色，但不包括前景的該名學生。","生成文字段落來覆蓋由左向右移動的學生，在文字段落中描述場景中發生的情況。"]},{"id":"29","zone":2,"type":"group","q":"針對生成某品牌新款廚師機的產品正面評價影片，下列哪些提示詞是有效的？正確為「O」，錯誤為「X」：","a":"","exp":"製作產品影片時，AI 需要的是「結構（Structure）」與「行動呼籲（CTA）」。第一個選項提供了具體長度（5 分鐘）與清晰的敘事流程（介紹➔易用性➔清洗➔購買），這是大綱式提示（Outline Prompting）的典範。第二個選項太籠統，第三個選項要求「無偏見」則與廣告推銷的目的衝突。","src":"公開參考題庫（80 題）","subs":[{"q":"製作一段 5 分鐘影片，詳細介紹某品牌新款廚師機。在影片中，應進行介紹、說明它易於使用和清洗並進行總結，鼓勵觀眾購買這款廚房用具。","a":"O"},{"q":"製作有關新款廚師機的影片。在影片中，應討論其潛在用途，並鼓勵潛在買家購買這款廚師機。","a":"X"},{"q":"製作廚師機的無偏見評價影片。","a":"X"}]},{"id":"30","zone":2,"type":"group","q":"針對製作一段有動畫猴子角色按腳本表演的影片，下列哪些提示詞有助於實現目標？正確為「O」，錯誤為「X」：","a":"","exp":"要讓動畫角色按腳本表演，提示詞必須定義「角色設定 + 任務環境 + 輸入源」。第一個選項結合了時間（45 秒）、角色（猴子）、具體腳本執行以及獨特的環境背景（太空），給予了 AI 完整的約束條件。其他選項雖然提到了元素，但缺乏將「腳本內容」與「角色表演」整合的具體指令。","src":"公開參考題庫（80 題）","subs":[{"q":"製作一段 45 秒影片，其中有一隻猴子使用指定的腳本在太空中解釋複雜的太空概念。","a":"O"},{"q":"製作一段 45 秒影片，使用動畫技術讓一隻猴子在太空中念劇本。","a":"X"},{"q":"製作一段 45 秒影片，讓猴子當宇航員，並使用高級文本轉語音軟體，讓它念一段關於太空的腳本。","a":"X"}]},{"id":"31","zone":2,"type":"single","q":"你向 AI 發出「制定快速鍛鍊計畫」，結果僅生成約 10 分鐘且強度不明的方案。若要讓訓練計畫符合 30 分鐘力量訓練目標，接下來應使用哪個提示詞？","a":"A","exp":"這題反映了提示詞的迭代細化（Iterative Refinement）。面對不滿意的初步結果，最有效的方法是「明確定義變數」。選項 A 直接修正了兩個核心參數：時間長度（Duration, 30分鐘）與訓練類型（Modality, 力量訓練）。這比選項 B 的模糊指令或選項 C 的詢問原理更能直接導向可執行的結果。","src":"公開參考題庫（80 題）","opts":["按照 30 分鐘的力量訓練進行修改。","更精細一些。","說明如何通過 30 分鐘的力量訓練提升身體素質。","增加更多輸出。"]},{"id":"32","zone":2,"type":"group","q":"你打算使用生成式 AI 為能在 iOS 和 Android 上執行的應用程式生成程式碼。針對每個敘述，你是否應該使用提示詞？應該為「O」，否則為「X」：","a":"","exp":"這題考驗對 AI 能力邊界的理解。AI 無法直接在你的硬體上「建立」或「展示執行效果」（選項 1, 2），它只能產出「程式碼」（數位資產）。因此，正確的指令是要求 AI「編寫程式碼」（選項 3），然後再由人類開發者進行編譯與部署。","src":"公開參考題庫（80 題）","subs":[{"q":"建立一個具備三個頁面的應用程式：主頁、關於和聯繫方式。","a":"X"},{"q":"向我展示具有三個頁面（主頁、關於和聯繫方式）的 Android 和 iOS 應用程式在我的設備上的顯示效果。","a":"X"},{"q":"編寫程式碼以建立一個具有三個頁面的應用程式，分別是主頁、關於和聯繫方式。該應用程式應該能在 Android 和 iOS 上執行。","a":"O"}]},{"id":"33","zone":2,"type":"single","q":"你剛剛與團隊一起參加了工作會議，需要建立一份精簡的摘要，記錄會議中討論的每個要點。可以選擇哪兩個提示詞生成摘要？","a":"B,D","exp":"高品質的會議摘要取決於「資訊密度」與「上下文框架」。選項 B 聚焦於「決策（Decisions）」與必要資訊，這是商務摘要的核心；選項 D 提供了會議的「目的回顧」，確立了摘要的背景（Context）。選項 A 僅關注後續任務，選項 C 僅是格式調整，均不足以構成完整的內容摘要。","src":"公開參考題庫（80 題）","opts":["列出上次會議的所有行動事項和後續任務","僅摘錄本次會議的必要資訊和決定","為此會議記錄設定格式","簡要回顧此次會議的目的"]},{"id":"34","zone":2,"type":"group","q":"一位社會科學家準備一個龐大的房屋資料集。識別所需的標頭標籤，以用於完成各項分析工作。將每個分析目標配對正確的欄位標籤：","a":"","exp":"這題是資料科學的前置作業，測試是否能將「分析目標」對應到正確的「資料欄位（Schema）」：\n1. 最新房產 → 需要「建造年份」與分類用的「社區類型」。\n2. 空間相關性 → 需要「面積」、「臥室/衛浴數量」與「區域」。\n3. 平均單價 → 需要「總價」除以「面積」，並按「區域」分組。\n4. 價格預測 → 需要所有影響價格的特徵向量（區域、臥室數、年份）作為模型輸入。","src":"公開參考題庫（80 題）","subs":[{"q":"確定每種社區類型中年份最新的房產","a":"A","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]},{"q":"確定房屋大小、房屋數量與區域之間的相關性","a":"B","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]},{"q":"查找每個區域的每平方米平均價格","a":"C","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]},{"q":"假設市中心有一套 2020 年建成的三房住宅，預測它的價格","a":"D","options":["A. 建造年份、社區類型","B. 臥室數量、衛浴數量、面積、區域","C. 區域、總價、面積","D. 區域、總價、臥室數量、建造年份"]}]},{"id":"35","zone":2,"type":"single","q":"你要建立一個美食社群來展示你的烹飪技術，想使用 AI 創作一篇貼文。哪個提示詞將生成或可用於建立該貼文的輸出？","a":"A","exp":"經營美食社群的核心在於「個人敘事」與「品牌人設（Persona）」。選項 A 建立了創作者的品牌故事與情感連結，讓受眾認識你這個人，是發展社群帳號最重要的第一步。選項 C 是攝影教學，選項 D 是旅遊導覽，均偏離了「展示烹飪技術」的核心目標。","src":"公開參考題庫（80 題）","opts":["寫一個介紹性的社群貼文，介紹我對美食的熱愛以及啟發我建立這個社群帳號的因素。在文章中包括我最喜歡的菜餚和烹飪風格。","分享一個詳細的食譜，其中包含步驟說明和生動的圖像。重點突顯出使用的任何獨特配料或烹飪技巧。","分享拍攝美食照片的技巧。討論可增強美食呈現效果的燈光、角度和道具。","記錄人們可以在我的城市中進行的美食之旅。介紹該城市著名的當地特色美食和風味。"]},{"id":"36","zone":2,"type":"single","q":"你要成立一家名為 Healthy Eats 的小型食品企業，希望在商標 Logo 中包含公司名稱、粉色和綠色以及草莓圖片。哪兩個提示詞最有可能提供符合這些標準的商標 Logo？","a":"A,C","exp":"高品質的圖像生成提示詞必須包含：名稱、色彩空間、物件元素。選項 A 與 C 最優，因為它們明確列出了所有硬性需求：品牌名（Healthy Eats）、特定顏色（粉色/綠色文字）、具象圖案（草莓）。若不指定顏色應用於文字，AI 常會隨機分配顏色。","src":"公開參考題庫（80 題）","opts":["名叫 Healthy Eats 公司的小型企業商標 Logo，使用粉色和綠色文字以及草莓圖片。","製作一個以草莓為主題的商業商標 Logo，以強調健康飲食。在商標中包括公司名稱 Healthy Eats","我想為一家小型企業製作商標 Logo，這家企業名叫 Healthy Eats，文字應為粉紅色和綠色。並且商標 Logo 中應包含草莓圖片。","為我的公司設計一個商標，使用粉色和綠色作為配色方案，並在商標上放置一顆草莓。","為我的小型企業 Healthy Eats 設計一個富有創意的商標 Logo，使用粉色和綠色以及草莓圖片，並反映出我的企業價值觀。"]},{"id":"37","zone":2,"type":"single","q":"你正在寫一部小說，打算生成一些封面草圖。要獲取最有用的輸出，你應該在提示詞中包含哪些項目？","a":"A","exp":"給予 AI（或人類藝術家）的創意簡報（Creative Brief）必須包含視覺構成要素。選項 A 涵蓋了書名（文字元素）、主題與背景（內容敘事）、藝術風格（視覺基調）。單純的人物姓名、頁數或插圖尺寸對於構建一個吸引人的封面幫助甚微，封面的靈魂在於氛圍與佈局。","src":"公開參考題庫（80 題）","opts":["書名、主題、背景、所需的藝術風格以及封面圖應包含內容的概述","人物姓名、書名、作者姓名和藝術家姓名","藝術家提供的插圖範例、書名和頁數","插圖尺寸、書名、書的主題和商標藝術家的姓名"]},{"id":"38","zone":2,"type":"group","q":"針對發給生成式 AI 的下列每個提示詞，人工智慧（AI）會為「O」，不會為「X」：","a":"","exp":"這題區分了「創意生成」與「系統管理」。AI 可以進行 Image-to-Image 轉化（將草圖變真實），這是擴散模型的強項。但 AI（特別是 LLM）無法「理解」檔案格式（這是解析器的功能），也無法直接修改檔案的中繼資料（Metadata），因為這涉及作業系統層級的二進位檔案編輯權限。","src":"公開參考題庫（80 題）","subs":[{"q":"瞭解商標 Logo 的檔案格式。","a":"X"},{"q":"將房屋的草圖轉換為具有很強真實感的表示形式。","a":"O"},{"q":"修改度假照片的中繼資料，以更改其位置和日期。","a":"X"}]},{"id":"39","zone":2,"type":"group","q":"針對為公司製作一份公益廣告（鼓勵大家勤洗手），下列做法在建立提示詞時是否應遵循？正確為「O」，錯誤為「X」：","a":"","exp":"這是提示工程的黃金法則：1. 具體化（提供視覺細節）；2. 明確化（定義受眾與類型）；3. 脈絡化（提供背景）；4. 顯性化（拒絕假設 AI 懂你，AI 沒有常識）；5. 簡潔化（直白語言）。選項 4 是最大的誤區，如果不提供詳細解釋，AI 只會根據機率隨機猜測。","src":"公開參考題庫（80 題）","subs":[{"q":"需要特定場景、人物或操作時，請提供全面的視覺和敘述性描述。","a":"O"},{"q":"明確定義你的要求，例如指定影片類型、目標受眾和要點。","a":"O"},{"q":"包括與影片相關的詳細背景資料、基調和風格。","a":"O"},{"q":"假定人工智慧系統瞭解專案的一般背景，這樣就減少了提供詳細解釋的需求。","a":"X"},{"q":"使用直白的語言，盡可能減少誤解。","a":"O"}]},{"id":"40","zone":2,"type":"single","q":"你要使用生成式 AI 將 PPT 簡報轉換為有關甜菜的具有專業性和教育性影片。哪個提示詞可達到預期結果？","a":"A","exp":"要製作「專業且教育性」的影片，提示詞必須包含節奏控制（留出閱讀時間）與口吻設定（正式場合）。選項 A 完美符合這些要求。選項 B 過於娛樂化（表情符號），選項 D（新聞播報）偏離了教育初衷，選項 C 則是生成圖像而非影片。","src":"公開參考題庫（80 題）","opts":["使用提供的簡報，製作一段有關甜菜的 2 分鐘影片。應採用正式場合口吻，在動畫中，應留出時間讓人讀出提供的文字。","使用提供的簡報作為基礎，生成一段關於甜菜的 2 分鐘影片。影片應生動有趣，並包括 GIF 動畫和表情符號。","查看簡報並確定有關甜菜的最佳資訊。使用這些資訊，生成一系列可在簡報中使用的新圖像。","你是一名新聞播報員。使用簡報中的資訊，查找最近有關甜菜的新聞報導，並將其製作成影片。"]},{"id":"41","zone":2,"type":"single","q":"你發出了提示詞「公園裡有一隻快樂的狗」，輸出是一隻卡通狗。你希望這隻狗更加逼真，要採用復古風格且顏色應該很飽滿。哪個提示詞會提供更符合要求的輸出？","a":"A","exp":"這題考驗風格描述詞（Stylistic Descriptors）的運用。若要改變輸出風格，必須明確指定。選項 A 透過「復古插圖（Vintage Illustration）」定義了視覺基調，並以「鮮豔色彩（Vivid Colors）」滿足了飽滿度的需求。其他選項缺乏對風格的具體約束，容易導致 AI 回退到預設的卡通或一般風格。","src":"公開參考題庫（80 題）","opts":["運用鮮豔的色彩描繪城市公園裡有一隻快樂的狗的復古插圖。","公園裡有一隻快樂的狗的彩色影像","一隻快樂的狗坐在城市公園裡的 200x200 像素影像","城市公園裡有一隻快樂的金毛獵犬的影像"]},{"id":"42","zone":3,"type":"group","q":"針對為史密斯附近的大壩拆除專案建立無偏見的摘要，下列提示詞是否帶有偏見？有偏見為「O」，無偏見為「X」：","a":"","exp":"識別偏見是 AI 素養的關鍵。第一個選項僅關注「成就（Achievements）」，屬於選樣偏差（Selection Bias）。第二個選項僅採納「公用事業公司」的建議，該方通常是利益相關者，具有立場偏差。第三個選項引用「獨立第三方研究（Independent 3rd Party）」，並關注可行性與策略，這是最客觀中立的提示方式。","src":"公開參考題庫（80 題）","subs":[{"q":"生成一個 150 字的摘要，內容關於大壩拆除的主要成就，重點關注對史密斯河附近的生態系統產生的最重大的影響。","a":"O"},{"q":"建立一份摘要，內容關於史密斯河附近可能進行大壩拆除所帶來的影響，並包含公用事業公司提出的生態系統恢復建議。","a":"O"},{"q":"生成一份摘要，內容關於獨立協力廠商研究中針對拆除大壩提供的建議，重點關注在史密斯河上實施該專案的可行性見解與潛在策略。","a":"X"}]},{"id":"43","zone":3,"type":"single","q":"你有一個橫條圖，該圖顯示了增加高脂肪食物攝入量和藥物用量增加之間的關係。哪個提示最能幫助你建立引人入勝的敘述內容，同時保留原始資料的含義？","a":"B","exp":"數據敘事（Data Storytelling）的目標是將數據轉化為洞察。選項 B 是最佳解，因為它保留了數據的「技術術語（Fidelity）」，確保準確性，同時加入了「後果推論（Consequences）」，使內容具備行動啟發性。選項 A 的故事可能過度演繹，選項 C 過於通俗，選項 D 則完全娛樂化，損失了數據的嚴謹性。","src":"公開參考題庫（80 題）","opts":["撰寫一個麵包師發現規律的故事，在故事中包括圖表中的資料，暗示高脂肪食物與藥物用量之間的關係。","編寫橫條圖的摘要，其中包括所有技術術語，以及如果人類繼續保持相同的習慣可能會發生的後果。","為醫院候診室編寫一本宣傳冊，用通俗的語言解釋橫條圖中呈現的資料，並提供範例。","創作一首說唱歌曲，其中包含三段歌詞和一段副歌，說明健康飲食的重要性，及其對身體健康的影響。"]},{"id":"44","zone":3,"type":"single","q":"Nicole 為她的高中英文課撰寫了一篇議論文，並將這篇文章上傳到生成式 AI 工具請求協助。她可以使用哪些提示詞來幫助她「編輯」作業？","a":"A","exp":"在學術寫作中，AI 應作為「編輯（Editor）」而非「代筆者（Writer）」。選項 A 聚焦於語法、標點、拼寫等技術性編輯（Proofreading），這是最安全且能提升文章品質的方式。選項 C 與 D 則是要求 AI 直接寫作，屬於學術不端行為。","src":"公開參考題庫（80 題）","opts":["分析上傳文章，提供語法、標點、拼寫和大小寫方面的建議。","分析上傳文章，提供有關的內容以及論證任務相符性的建議。","寫一篇符合高中生風格的規範作文。","撰寫一篇能夠在英語課上獲得高分的議論文。"]},{"id":"45","zone":3,"type":"single","q":"你要建立一份銷售簡報，以探討消費者年齡和購買產品數量兩個變數之間的關聯。哪個提示詞最有可能生成恰當的資料視覺表示形式？","a":"A","exp":"這題涉及統計圖表的選擇。當需要探討「兩個連續變數（年齡 vs 購買量）」之間的「相關性（Correlation）」或分佈模式時，散點圖（Scatter Plot）是唯一正確的選擇。圓形圖用於比例，長條圖用於類別比較。透過散點圖，可以直觀看出某個年齡層是否購買力特別強。","src":"公開參考題庫（80 題）","opts":["建立一個散點圖，顯示特定產品的銷售量與消費者年齡之間的關係。","說明一個圓形圖，顯示我公司去年銷售的最暢銷的產品。","與橫條圖相比，使用長條圖來直觀顯示銷售資料有哪些好處？","製作一個圖表，顯示特定產品的總銷售量。"]},{"id":"46","zone":3,"type":"group","q":"下面這張散點圖包含一條趨勢線，顯示你的零售店的每週淨利潤。針對將圖表中的資料轉變為年終銷售現場會議所需的報告，下列提示詞能否撰寫所需報告？可以為「O」，不可以為「X」：","a":"","exp":"這題測試的是 AI 處理數據結構的能力。選項 4 (O) 涉及數據的「重新採樣與彙整（Data Aggregation）」，AI 可以計算每週數據的平均值與總和，並轉化為高層級的決策報告。其他選項均存在邏輯缺陷：散點圖無法直接變為年收入（資訊不足）、傳單不等於報告、語音敘述不具備結構化報表的特徵。","src":"公開參考題庫（80 題）","subs":[{"q":"將散點圖資料轉變為公司年收入的直觀表示形式。","a":"X"},{"q":"根據淨利潤資料設計一個宣傳傳單，重點介紹公司業績最好的幾週的情況。","a":"X"},{"q":"製作一段敘述語音，說明全年淨利潤資料中顯示的主要趨勢和模式。","a":"X"},{"q":"將每週淨利潤資料的格式轉換為季度報告，總結每個季度的總淨利潤和平均淨利潤。","a":"O"}]},{"id":"47","zone":3,"type":"single","q":"Brianna 提供了提示詞「制定每週鍛煉計畫」，但 AI 生成的計畫因她的身體狀況和工作時間問題，無法按計畫進行鍛煉。她應如何改進提示詞？","a":"A","exp":"這題反映了生成式 AI 在處理「個人化需求」時的局限。初始提示詞是「零樣本（Zero-shot）」的請求，缺乏邊界條件。選項 A 提供了最重要的「約束條件（Constraints）」：時間表與身體限制，稱為「情境填充」。AI 需要精確的輸入參數才能輸出可執行的計畫。","src":"公開參考題庫（80 題）","opts":["Brianna 應提供自己的時間表，並說明她身體狀況面臨的限制。","Brianna 應重新輸入該提示詞，讓人工智慧（AI）再制定一個個性化的健身計畫。","Brianna 應要求人工智慧（AI）提供鍛煉和飲食建議。","Brianna 應盡可能嘗試執行人工智慧（AI）提供的計畫。"]},{"id":"48","zone":3,"type":"single","q":"你一直使用同一對話生成所有社群媒體貼文，最新生成的一個貼文格式不符合預期，你希望它的格式與其他貼文的格式一致。你應該提供哪個後續提示詞？","a":"A","exp":"當 AI 生成的格式不符合預期，且對話中已有正確範例時，最有效的方法是「引用上下文（Referencing Context）」。選項 A 利用了 LLM 的「注意力機制（Attention Mechanism）」，讓它回顧對話歷史中的成功案例進行仿效。「同一個對話」內的參數權重是最高的，這比重新餵食其他使用者的資料更直接精確。","src":"公開參考題庫（80 題）","opts":["請修改貼文，使其看起來像之前生成的社群媒體貼文。","這裡有一些來自其他使用者的同一個主題的社群媒體貼文。請重新生成貼文。","這裡有一些我的朋友回覆之前貼文的螢幕截圖，請重試。","你是否透過加入主題標籤（hashtags）與標記其他內容創作者的用戶標籤（usertags）來優化這個貼文的觸及率？"]},{"id":"49","zone":3,"type":"single","q":"你正在使用 AI 系統為科技部落格產生內容，初始回覆是「人工智慧領域近期的發展趨勢，大力推動優化機器學習演算法…」。你接下來應使用哪個提示詞來獲得更詳細、更有針對性的回覆？","a":"A","exp":"高品質的內容需要從「廣度」轉向「深度」。選項 A 是一種「深入鑽研（Drill-down）」的策略，要求 AI 針對初步回覆中的「機器學習突破」提供具體的「汽車與金融」範例。這是一種「遞迴檢索」的思維，能有效避免 AI 產生空洞的廢話，確保文章具備專業的洞察力。","src":"公開參考題庫（80 題）","opts":["提供詳細的範例，說明最近在機器學習演算法方面的突破及其對汽車和金融行業的影響。","概述過去一年中開發的最新 AI 助手的技術規範和硬體要求。","總結 AI 從創始到現狀的歷史進程，重點介紹關鍵里程碑和數字。","預測 AI 在未來十年中的發展趨勢，重點介紹它可能如何顛覆市場及其新的行業應用。"]},{"id":"50","zone":3,"type":"single","q":"哪項定義正確地描述了提示詞鏈接（Prompt Chaining）技術？","a":"A","exp":"提示詞鏈接（Prompt Chaining）的核心定義是：將一個複雜任務拆解成多個子任務，並將前一個步驟的輸出作為下一個步驟的輸入（選項 A）。這與 Few-shot Prompting（選項 B）或 Chain-of-Thought（選項 C）不同，鏈接是開發 AI Agent 或自動化工作流的基石，能突破模型單次生成的限制。","src":"公開參考題庫（80 題）","opts":["將任務劃分為更小的子任務並使用一個新提示詞的輸出作為下一個提示詞的輸入。","提供若干範例，說明如何回答問題，並提供特定任務給人工智慧（AI）的行為。","提供需要進行數值計算的問題，以及如何計算該問題的結果的範例，然後要求提供類似問題的結果。","發出有關一個主題的指令詞，然後再發出有關另一個主題的提示詞。"]},{"id":"51","zone":3,"type":"group","q":"你建立大型語言模型的設定檔，該設定檔應套用一系列符合條件的問題，詢問用戶的心情和喜歡的音樂，並以此開始每次交互。對於每個指令，如果它能實現該目標，為「O」，不能實現為「X」：","a":"","exp":"這題考驗的是「引導式對話（Guided Dialogue）」的設計。隨機生成（選項 1）不需要 AI 互動。高品質的系統設定應該透過「結構化提問」（選項 2）與「量化指標」（選項 3，Likert Scale）來挖掘用戶深層偏好。這種「先提問、後生成」的流程，能有效減少幻覺，確保播放清單具備高度的「個性化契合度」。","src":"公開參考題庫（80 題）","subs":[{"q":"隨機生成歌曲清單。","a":"X"},{"q":"根據所在國家／地區當前最新熱門的 40 首歌，生成一系列相應的關於心情問題。這些問題應有以下幾類答案：「我覺得一樣」、「我覺得不一樣」或「這個問題與我無關」。","a":"O"},{"q":"僅對以下問題提問並要求回覆 1、2、3、4 或 5，以 1 到 5 評分，5 是最高分：1. 你有多開心？ 2. 你有多喜歡流行音樂？ 3. 你有多喜歡古典音樂？","a":"O"}]},{"id":"52","zone":3,"type":"single","q":"你讓一個生成式 AI 聊天機器人列出第二次世界大戰中發生的關鍵事件及其日期。哪兩種方法可以很好地驗證這些資訊是否正確？","a":"A,B","exp":"驗證歷史事實應回到「外部權威來源」：以搜尋引擎查證學術或官方資料（A），或直接查閱歷史專書與史料（B）。重新執行同一個模型（C）只會得到另一個機率輸出；再問另一個聊天機器人（D）同樣屬於生成式輸出，不能當作驗證來源。","src":"公開參考題庫（80 題）","note":"原始題庫標示 A、D；依考綱 3.5「驗證輸出正確性須使用可信外部來源」與同卷第 72 題邏輯，正解應為 A、B。","opts":["在搜尋引擎中查找相關事件，並確認提供的日期是否相同。","直接查看歷史書來確認二戰關鍵事件的日期。","重新運行人工智慧（AI）請求，因為生成式 AI 具有隨機元素，然後確認提供的日期是否相同。","讓另一個聊天機器人為你提供資訊並比較輸出。"]},{"id":"53","zone":3,"type":"single","q":"你要向非技術專業的受眾說明技術安全原則，想使用生成式 AI 將最近的安全性漏洞掃描報告轉換為適合該受眾的簡報。你應該使用哪個提示詞？","a":"A","exp":"這是一種「語意翻譯（Semantic Translation）」任務。選項 A 掌握了核心：「簡化語言 + 視覺輔助 + 範例」。非技術受眾（如高層）需要知道的是「風險是什麼」，而非技術細節。AI 在此的角色是「解釋者（Explainer）」，透過類比將硬核指標轉化為決策參考。","src":"公開參考題庫（80 題）","opts":["使用較為簡單的語言重新編寫報告，並添加視覺輔助和範例。","擴展安全掃描報告的技術詳細資訊。","總結該報告的要點。","提供針對安全掃描報告的詳細、批判性分析。"]},{"id":"54","zone":3,"type":"single","q":"你想使用生成式 AI 將新員工手冊轉換為簡報。哪個提示詞最有可能生成促進學習的簡報？","a":"A","exp":"將手冊轉化為簡報時，重點在於「認知負荷（Cognitive Load）」的管理。選項 A 強調了「吸引人且易於理解」，這要求 AI 進行「內容重組」而非單純的格式調整（選項 B）。這不僅是格式轉化，更是內容的「教學法優化（Pedagogical Optimization）」。","src":"公開參考題庫（80 題）","opts":["製作一個簡報，將內容轉換為吸引人且易於理解的格式。","重新調整新員工手冊的格式，使用一致的幻燈片佈局製作一個簡報。","製作一個新員工手冊，在手冊中包含相關圖像、圖表和圖形說明要點。","根據新員工手冊製作一個簡報，重點關注公司的價值觀。"]},{"id":"55","zone":3,"type":"single","q":"你要為小學課堂製作解釋光合作用的內容，結果對低齡受眾來說太過複雜。你如何才能優化結果，使其適合小學年齡段的受眾？","a":"A","exp":"解釋複雜概念給小學生聽，需要 AI 具備「心智模型切換」的能力。選項 A 明確定義了「兒童目標受眾」，這在提示工程中稱為「角色與受眾設定（Role & Audience Priming）」。當受眾明確時，AI 會自動過濾專業術語並使用比喻（如植物的廚房），這比單純說「簡單一點」（選項 B）更有效。","src":"公開參考題庫（80 題）","opts":["重新為兒童目標受眾編輯內容。","解釋得更簡單一點。","避免使用嚴格的語言，並提供具體的範例。","提供更簡短的解釋。"]},{"id":"56","zone":3,"type":"single","q":"你在 AI 工具中輸入提示詞，總覽一個圖表顯示 2000 年至 2005 年期間西班牙和南非每年的人口。你希望在圖形中顯示兩國人口在歷史上持續發生的變化。你應該指定哪個附加提示詞？","a":"A","exp":"要顯示數據隨時間的「持續變化（Historical Changes）」，折線圖（Line Chart）是最優選擇（選項 A）。折線圖能直觀展現斜率（增長速度）與趨勢。原圖的橫條圖適合比較絕對數值，圓形圖（選項 D）適合比例。這題考驗對「時序數據（Time-series Data）」合適呈現方式的認知。","src":"公開參考題庫（80 題）","opts":["重新生成現有資料表示，將格式更改為折線圖。","使用這些新的西班牙和南非人口預測資料，重新生成圖形。","根據資料中的趨勢，預測這個橫條圖在未來幾年內會如何發生變化。","使用圓形圖格式，重新生成現有資料表示。"]},{"id":"57","zone":3,"type":"single","q":"你在提示詞中提供了問答範例，範例中的答案不僅給出結果，還包含解釋邏輯（例如「根據色彩理論，將紅色和藍色按 2：1 混合…因為額外的紅色會在色輪上將色調變為更接近紅色…」）。你使用的是哪種類型的提示詞？","a":"A","exp":"這個範例展示了「思維鏈 (Chain of Thought, CoT)」的威力。提示詞中的範例答案不僅給出了結果，還包含了解釋邏輯（例如：因為額外的紅色…）。這稱為 Few-shot CoT，它不僅告訴 AI「答案是什麼」，更教會 AI「如何思考」，能顯著提升 AI 處理邏輯推理問題的準確度。","src":"公開參考題庫（80 題）","opts":["思維鏈（CoT）","零樣本學習","少樣本學習 (Few-shot learning)","自一性整理"]},{"id":"58","zone":3,"type":"single","q":"你想使用反向提示詞（Reverse Prompting），讓 AI 為你生成包含適當細節的履歷。哪個提示詞最有助於實現此目標？","a":"A","exp":"這稱為「資訊收割法」或反向提示詞（Reverse Prompting）。選項 A 要求 AI 主動列出它需要哪些資訊（讓 AI 當面試官），而不是由用戶盲目提供。這能確保 AI 拿到的是真實且完整的資料，避免 AI 根據模糊標籤去「編造」專案，從而產出 100% 真實且具競爭力的履歷。","src":"公開參考題庫（80 題）","opts":["讓我提供履歷所需的每個關鍵細節，然後使用這些資訊生成履歷。","使用標準履歷範本，生成包含可信細節的履歷。","我是一名具有 5 年經驗的英語老師，請為我撰寫一份履歷，用於申請一個教學崗位。","我從事電腦銀行工作四年，負責為金融行業編寫 Python 程式。請為我撰寫一份履歷，用於申請一個更高級的職位。"]},{"id":"59","zone":3,"type":"single","q":"某人工智慧（AI）工具提供了一個國家／地區的人口規模統計。你可以採取哪兩個步驟來驗證統計資訊的可靠性？","a":"A,B","exp":"驗證國家級統計數據必須回歸「第一手權威來源」。政府人口普查資料（A）是法律上的「地面真理（Ground Truth）」。國際組織報告（B，如聯合國、世界銀行）具備極高的學術參考價值與標準化校準。新聞文章（E）通常是二手資訊，容易有誤差。專業研究必須「溯源至官方機構」。","src":"公開參考題庫（80 題）","opts":["交叉引用政府發佈的最新人口普查資料。","檢查聯合國或世界銀行等國際組織提供的報告。","使用包括預期人口統計趨勢的經濟預測。","與享有聲譽的經濟研究機構提供的預測進行比較。","查閱熱門新聞文章，瞭解這些新聞報導中是否提到了相似的人口趨勢。"]},{"id":"60","zone":4,"type":"single","q":"你正在使用多個 AI 工具，收集即將進行的選舉中有關候選人的資訊。使用 AI 工具做研究時，你可能會發現它存在哪兩項局限性？","a":"A","exp":"在政治敏感議題中使用 AI，核心挑戰在於「不可靠性」與「演算法偏見（Algorithmic Bias）」。選項 A 正確指出了這兩點。AI 可能會產生幻覺（不可靠），或因訓練資料的不對稱而偏袒特定候選人（偏見）。資訊量多寡或時間順序（B/C/D）並非本質上的局限。","src":"公開參考題庫（80 題）","opts":["你發現收集的資訊不可靠，且某些資訊似乎存在偏見。","你發現收集的資訊不可靠，且人工智慧（AI）工具為你提供有關候選人的大量資訊。","你發現某些資訊似乎存在偏見，且這些資訊都是按時間順序提供的。","你發現人工智慧（AI）工具為你提供有關候選人的大量資訊，且這些資訊都是按時間順序提供的。"]},{"id":"61","zone":4,"type":"group","q":"針對你在 Microsoft Copilot 中輸入提示詞「全球變暖是什麼？」，下列有關潛在輸出的敘述是否正確？正確為「O」，錯誤為「X」：","a":"","exp":"這題強調對 AI 輸出的「批判性思考」。沒有任何 LLM 能保證 100% 中立（選項 1 為 X），因此面對科學事實必須執行「外部接地（Grounding）」，查證權威來源（選項 2 為 O）。AI 是民主化工具，並非只有科學家能使用（選項 3 為 X）。","src":"公開參考題庫（80 題）","subs":[{"q":"你可以確信輸出而不存在偏見。","a":"X"},{"q":"你應查證權威科學來源的資訊。","a":"O"},{"q":"只有科學家能夠輸入這種類型的資料。","a":"X"}]},{"id":"62","zone":4,"type":"group","q":"下列哪項關於人工智慧（AI）偏見的描述是否正確？正確為「O」，錯誤為「X」：","a":"","exp":"AI 的偏見通常是「垃圾進，垃圾出（Garbage In, Garbage Out）」的結果，訓練資料偏見會導致模型偏見（選項 1 為 O）。目前尚無模型能完全消除偏見（選項 2 為 X）。因此，AI 治理中「人機協作審核（Human-in-the-loop）」是防範歧視的標準程序（選項 3 為 O）。","src":"公開參考題庫（80 題）","subs":[{"q":"使用有偏見的訓練資料的人工智慧（AI）影像或模型可能帶有偏見的影像。","a":"O"},{"q":"ChatGPT 最可靠地消除回覆存在的偏見。","a":"X"},{"q":"應人工審查人工智慧（AI）生成的內容是否存在偏見。","a":"O"}]},{"id":"63","zone":4,"type":"group","q":"某公司要開發自動駕駛汽車，讓這些汽車使用生成式 AI 進行導航。你需要將每個階段和相應場景進行配對。 A. 數據標註 | B. 部署 | C. 資料收集 | D. 模型訓練","a":"","exp":"這題描述了 AI 開發的標準流水線（Pipeline）：攝像頭錄製是獲取原始數據（資料收集, C）；將圖像物件轉換為可理解的標記是語義處理（數據標註, A）；調整權重讓模型學習區分特徵是核心過程（模型訓練, D）；將模型安裝到汽車進行場域測試則是最後一步（部署, B）。","src":"公開參考題庫（80 題）","subs":[{"q":"僅對停車場和交通信號燈圖像進行分詞處理。","a":"A","options":["A","B","C","D"]},{"q":"這些汽車將銷往各處，但在你的城市進行測試。","a":"B","options":["A","B","C","D"]},{"q":"攝像頭和感測器僅在白天錄製影片和聲音。","a":"C","options":["A","B","C","D"]},{"q":"資料包括根據身高採用不同加權值的行人。","a":"D","options":["A","B","C","D"]}]},{"id":"64","zone":4,"type":"single","q":"你是一家律師事務所的實習生，該公司想要在招聘流程中使用生成式 AI。需要考慮哪三種法律類型？","a":"B,C,D","exp":"在招聘中使用 AI 涉及多重合規議題：收集面試者個資需符合《個資法》（B）；確保 AI 篩選不會因性別或年齡產生歧視需符合《勞動法》（C）；招聘中生成的測驗題或報告的版權歸屬則涉及《智財法》（D）。AI 應用已不再是純技術問題，而是跨領域的合規議題。","src":"公開參考題庫（80 題）","opts":["房地產法","個人資料保護法","勞動法","智慧財產權法"]},{"id":"65","zone":4,"type":"single","q":"英國最高法院裁定在專利申請中，人工智慧（AI）不應該是唯一的發明者。如何使用生成式 AI 才能申請專利？","a":"A","exp":"專利法的原則是「發明人必須是自然人」。選項 A 中，AI 的角色為「輔助工具」（更正設計），最終的發明思維與決策仍由人類掌握，因此最符合申請條件。若由 AI 主導生成（如 B/C/D），會面臨發明人資格的法律爭議。專利實務中必須詳盡記錄人類的具體貢獻。","src":"公開參考題庫（80 題）","opts":["使用人工智慧（AI）更正現有設計中不準確的地方。","使用人工智慧（AI）生成尚未生產的新產品的計畫。","使用人工智慧（AI）重新設計現有產品以生產新產品。","利用人工智慧（AI）使用空白範本生成產品計畫。"]},{"id":"66","zone":4,"type":"single","q":"應該如何避免向大型語言模型洩露個人資訊？","a":"A","exp":"避免資訊洩漏的黃金準則就是「去識別化（De-identification）」。姓名、身分證字號、精確位置屬於 PII（個人識別資訊），一旦輸入公共 AI 模型，就可能被納入訓練集。雖然專有技術（B）也該保護，但這屬於「商業機密」而非「個人資訊」。","src":"公開參考題庫（80 題）","opts":["避免使用姓名、年齡、位置和社交媒體帳號等敏感資訊。","避免上傳技術規範和圖紙等專有資訊。","避免讓大型語言模型使用事實來預測與用戶的交互結果。","避免讓人工智慧（AI）在回覆提示詞的過程中扮演相應角色進行對話。"]},{"id":"67","zone":4,"type":"single","q":"哪二項描述識別了生成式 AI 及其使用的相關風險？","a":"A,B","exp":"這題釐清了 AI 產出的責任歸屬。無論 AI 怎麼寫，最終按下「發布」鍵的人必須負起法律責任（A）。利用 AI 生成深度偽造（Deepfake）誹謗他人或詐騙，已明確列入刑事與民事追訴範圍（B）。AI 目前尚無法完美自動阻斷有害內容，且必須維持人為監督。","src":"公開參考題庫（80 題）","opts":["你對使用生成式 AI 建立的內容負責。","使用生成式 AI 建立有害內容可引起民事或刑事訴訟。","即使沒有人為干預，生成式 AI 也可能輕鬆識別和阻止有害內容。","生成式 AI 可以很好地運行，無需人為監督來確保生成的內容正確無誤。"]},{"id":"68","zone":4,"type":"group","q":"你是一家合夥公司的合規經理，該公司正在考慮使用生成式 AI 聊天機器人來自動進行客戶處理。下列每個關於生成式 AI 聊天機器人的敘述，正確為「O」，錯誤為「X」：","a":"","exp":"對於合規經理而言，風險主要集中在「資料安全」與「法律合規」。財務與個人資料處理不當（O）會導致災難性的品牌信任崩潰與高額罰款。而「未能提供專業支持」（X）屬於「服務品質」問題，雖然重要，但其風險層級與「合規風險（Compliance Risk）」中的資料洩漏、法律責任不同。","src":"公開參考題庫（80 題）","subs":[{"q":"聊天機器人對敏感財務資料處理不當，導致客戶不滿。","a":"O"},{"q":"聊天機器人對敏感個人資料處理不當，導致客戶不滿。","a":"O"},{"q":"聊天機器人未能提供專業支持，導致客戶不滿。","a":"X"}]},{"id":"69","zone":4,"type":"group","q":"你們班正在討論 AI 對世界的貢獻，針對每個場景，積極影響為「O」，消極影響為「X」：","a":"","exp":"這是一個關於「技術雙面性」的分析。Sara 使用 AI 了解他人觀點體現了「同理心建模」的積極潛力；使用 AI 作為靈感大綱展現了提升「生產力」的價值。而利用深度偽造（Deepfake）進行政治操弄，則是嚴重的負面威脅。","src":"公開參考題庫（80 題）","subs":[{"q":"Sara 和她最好的朋友 Jane 在學校裡產生了分歧。Sara 回家後使用 AI 詳細瞭解 Jane 的觀點。","a":"O"},{"q":"在一次選舉中，一名候選人使用深度偽造（Deepfake）技術讓對手說了一些他沒有說過的話。","a":"X"},{"q":"Sara 使用生成式 AI 工具來搜尋熱門話題，生成了一個包含可能的部落格文章觀點的大綱。","a":"O"}]},{"id":"70","zone":4,"type":"single","q":"哪兩項有關生成式 AI 的影響是真實的？","a":"A,B","exp":"AI 在職場中的兩大支柱為「生產力解放」（A，節省時間、提高效率）與「創意協作」（B，支援發散性思考、腦力激盪）。選項 C 與 D 不符現實，AI 反而可能增加處理資訊的頻寬，且藝術領域更強調人類靈魂的注入，AI 是工具而非替代品。","src":"公開參考題庫（80 題）","opts":["生成式 AI 可以讓員工節省時間並提高工作效率。","生成式 AI 可以為發散性的思考提供支援。","生成式 AI 將人們每天在螢幕上花費的時間平均減少了 5 小時。","生成式 AI 減少了人類在藝術領域進行創造的需求。"]},{"id":"71","zone":4,"type":"single","q":"你需要為管理團隊建立一個簡報，說明使用生成式 AI 的至少兩個侷限性。你應選擇哪兩個範例？","a":"A,B","exp":"這是管理層需知的「風險管理」核心。不準確性（A）來自於 LLM 的幻覺（Hallucination），需人為監督。偏見問題（B）則源於訓練資料中的歧視性內容（垃圾進，垃圾出）。這兩點是企業導入 AI 時最需警惕的紅線。","src":"公開參考題庫（80 題）","opts":["由於缺乏人為監督，存在不準確的問題","歧視性輸入會導致偏見","預測或回覆中充滿情緒","由於缺乏創造力，生成的內容單調","缺乏自動化，導致效率低下"]},{"id":"72","zone":4,"type":"group","q":"針對驗證人工智慧（AI）輸出關於歷史資料的準確性，下列每項表述是否能可靠地驗證準確性？正確為「O」，錯誤為「X」：","a":"","exp":"驗證歷史準確性的黃金準則在於「外部獨立性」。網路搜索與歷史資料集屬於「接地（Grounding）」驗證，透過第三方權威機構檢核。使用另一個 AI 平台（X）被稱為「循環論證」，因為不同模型可能使用相似的訓練資料集，導致一致的錯誤。","src":"公開參考題庫（80 題）","subs":[{"q":"在網際網路上進行搜索，查證學術資源中的事實。","a":"O"},{"q":"參考可靠的歷史資料集以查證事實。","a":"O"},{"q":"使用另一個人工智慧（AI）平台查證事實。","a":"X"}]},{"id":"73","zone":4,"type":"group","q":"你要評估以下提示詞是否存在固有偏見。對於每個提示詞示例，如果提示詞存在固有偏見為「O」，無偏見為「X」：","a":"","exp":"這題分辨「引導式提示（Leading Prompt）」與「分析式提示」。第一個示例雖然要求客觀，但開頭已預設結論（「強調...比化石燃料更可靠」），這會誘導 AI 忽略反對證據（有偏見, O）。第三個示例同樣預設立場（「強調太陽能卓越」，有偏見, O）。只有第二個示例要求「分析優缺點」並「客觀展示」，給予 AI 雙向檢索的空間（無偏見, X）。","src":"公開參考題庫（80 題）","subs":[{"q":"強調在城市環境中，可再生能源（太陽能、風能、水能和地熱能）比化石燃料的能耗更低、也更可靠。考慮能源輸出、環境影響和可擴展性等因素。提供公正客觀的分析，而不偏向於任何特定的可再生能源。","a":"O"},{"q":"分析在城市環境中，各種可再生能源（太陽能、風能、水能和地熱能）的優缺點。重點關注能源輸出、成本、環境影響和可擴展性等指標。客觀地展示預期的結果。","a":"X"},{"q":"比較太陽能和風能的潛能，瞭解它們有多大可能徹底改變供電系統。強調太陽能卓越的環境效益和長期成本節省，同時涵蓋在人口密集地區安裝風能設備面臨的挑戰。","a":"O"}]},{"id":"74","zone":4,"type":"single","q":"甲使用生成式 AI 建立圖片，該圖片描繪乙從事非法活動。甲共用了這張圖片，標題寫「看看乙在做什麼！」。這張圖片迅速爆紅。這是否合法？","a":"A","exp":"即便圖片是 AI 生成的，但甲「主觀上」具有傳播不實資訊的意圖，且「客觀上」該圖片足以損害乙的名譽。在法律上這屬於「誹謗罪」。法律責任不會因為工具是 AI 就轉移（選項 D 錯誤），也不會因為不是真實照片就豁免（選項 B 錯誤）。","src":"公開參考題庫（80 題）","opts":["不合法。這被視為誹謗，屬於非法行為。","合法。因為甲沒有使用乙的真實照片。","不合法。因為生成式 AI 不遵循版權法。","合法。因為是生成式 AI 建立的圖片，而不是甲建立的。"]},{"id":"75","zone":4,"type":"group","q":"每種類型的法律侵權與人工智慧（AI）生成的輸出進行配對。A. 版權侵權 | B. 商標侵權 | C. 專利侵權","a":"","exp":"這題釐清了 AI 產出物在法律上的定位：樂譜、文字、畫作屬於「版權（著作權）」保護的表達方式（A）；品牌標識（Logo）屬於「商標權」（B）；技術方案與工程設計圖則屬於「專利權」（C）。","src":"公開參考題庫（80 題）","subs":[{"q":"一段樂譜與一位作曲家譜寫的樂譜雷同","a":"A","options":["A","B","C"]},{"q":"一個商標 Logo 與某運動品牌公司註冊的商標 Logo 相同","a":"B","options":["A","B","C"]},{"q":"一部 3D 相機的詳細工程圖和程式與某數碼產品公司已備案的工程圖和程式非常相似","a":"C","options":["A","B","C"]}]},{"id":"76","zone":4,"type":"single","q":"某保健食品公司使用 AI 收集購買減肥產品的客戶的姓名、地址、電話號碼和健康詳細資訊。如果該公司不採取必要的預防措施，防止使用這些資料訓練生成式 AI 模型，可能會產生哪三種後果？","a":"A,B,C","exp":"將客戶敏感數據餵給 AI 訓練會引發：身分盜用（A，模型洩露個資）、個資法訴訟（B，違反法規）、信任崩潰（C，聲譽受損）。選項 D 提到的是公共資訊，其風險層級低於上述三項涉及個人隱私的嚴重後果。","src":"公開參考題庫（80 題）","opts":["客戶身份被盜用","陷入消費者資料隱私的訴訟","客戶缺乏信任","公司的公共資訊可能會暴露。"]},{"id":"77","zone":4,"type":"group","q":"針對作為測試中心管理員，你需要回答將資料庫（含帳號、姓名、密碼和分數）上傳到 ChatGPT 進行分析存在哪些危害。為每個問題選擇正確的回覆：","a":"","exp":"上傳含帳號、密碼的資料庫到公開 AI 服務，資訊會存在於當前對話與平台紀錄中（A）；平台可透過 IP 位址、帳號與裝置指紋等紀錄進行關聯（B：是），因此不能假設匿名。一旦機密外洩，責任由使用者與其所屬公司承擔（A），不會由 AI 供應商負責。","src":"公開參考題庫（80 題）","subs":[{"q":"ChatGPT 會記住帳號和密碼多長時間？","a":"A","options":["A. 它會在當前對話中記住這些資訊。","B. 它會永久性記住這些資訊。","C. 它會暫時儲存帳號和個人資料。"]},{"q":"在後續對話中，ChatGPT 是否可以將你的 IP 位址與這些資料相關聯？","a":"B","options":["A. 否。","B. 是。"]},{"q":"如果在與 ChatGPT 的對話期間，測試參加者的密碼因網路攻擊遭到洩露，會發生什麼？","a":"A","options":["A. 你和你的公司將承擔責任。","B. ChatGPT 將承擔責任。"]}]},{"id":"78","zone":4,"type":"single","q":"科學老師在試卷中暗藏陷阱：他使用了與背景色同色的字體，鍵入了大量與論文主題不相關的資訊。如果學生的作答中出現了這些隱藏內容，可以說明什麼？哪一個選項包含了老師這樣做的兩個原因？","a":"A","exp":"這是一個經典的「蜜罐（Honey Pot）」陷阱或「白色字體陷阱」。人類讀者看不到隱藏字，但 AI 會讀取並總結。如果學生的總結中出現了那些不相關資訊，即證明了學生未親自閱讀而直接使用 AI。這旨在維護學術誠信與原創性。","src":"公開參考題庫（80 題）","opts":["瞭解學生是否使用人工智慧（AI）編寫了這段內容總結。這將是作弊行為，以及確保學生負責撰寫原創作品。","瞭解學生是否使用人工智慧（AI）編寫了這段內容總結。這將是作弊行為，以及幫助學生提供有創意的分析。","確保學生負責撰寫原創作品，以及提示學生重新閱讀他們的作業，並修正任何拼寫和語法錯誤。","幫助學生提供有創意的分析，以及提示學生重新閱讀他們的作業，並修正任何拼寫和語法錯誤。"]},{"id":"79","zone":4,"type":"group","q":"針對生成式 AI 對教育的影響，下列每個表述是否對教育領域有重大影響？正確為「O」，錯誤為「X」：","a":"","exp":"提交非原創作品（O）是教育界目前面臨的最大衝擊。AI 作為最強的客製化助教，能補充課程內容（O）。然而，教師並未因此大量失業（X），因為教育涉及情感聯結與價值觀引導，AI 無法完全取代教師的角色。","src":"公開參考題庫（80 題）","subs":[{"q":"學生使用生成式 AI 提交並非自己撰寫的作品。","a":"O"},{"q":"有效的專任教師職位已被取消或大幅減少。","a":"X"},{"q":"生成式 AI 可以用來補充課程內容。","a":"O"}]},{"id":"80","zone":4,"type":"single","q":"使用生成式 AI 對社會既有積極影響，也有消極影響。哪一個選項包含了三種生成式 AI 的積極影響？","a":"A","exp":"AI 的正向價值在於「效率提升與知識獲取」：如醫學研究（加速藥物發現）、精準農業（高效耕作）與文化傳播（了解世界文化）。選項 B/C/D 中提到的「避免溝通」或「不做功課」屬於消極副作用，並非積極影響。","src":"公開參考題庫（80 題）","opts":["可以使用生成式 AI 訪問海量資料以進行醫學研究、可以使用生成式 AI 促進高效耕作、可以使用生成式 AI 詳細瞭解世界文化。","可以使用生成式 AI 訪問海量資料以進行醫學研究、可以使用生成式 AI 避免人與人的溝通交流、可以使用生成式 AI 促進高效耕作。","可以使用生成式 AI 訪問海量資料以進行醫學研究、可以使用生成式 AI 避免人與人的溝通交流、可以使用生成式 AI 做家庭作業，而無需學習相關材料。","可以使用生成式 AI 避免人與人的溝通交流、可以使用生成式 AI 促進高效耕作、可以使用生成式 AI 做家庭作業，而無需學習相關材料。"]}];
 const ZSHORT = {1:'考綱一',2:'考綱二',3:'考綱三',4:'考綱四'};
 const ZFULL = {1:'考綱一 · 生成式AI方法與方法論',2:'考綱二 · 基礎提示工程',
                3:'考綱三 · 提示優化',4:'考綱四 · 倫理、法律與社會影響'};
 
-const S = {
-  mode:'quiz', zone:'all', kw:'', ans:true, exp:true, idx:0,
-  pick:{}, visited:{}
-};
+const S = { mode:'quiz', zone:'all', kw:'', idx:0, pick:{}, open:{}, skipped:{} };
 
 const $ = s => document.querySelector(s);
 const esc = t => String(t==null?'':t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ansKeys = a => String(a||'').toUpperCase().split(/[^A-Z]+/).filter(Boolean);
 const isMulti = d => d.type!=='group' && ansKeys(d.a).length>1;
+const isOpen = d => !!S.open[d.id];
 
 function pool(){
   const kw = S.kw.trim().toLowerCase();
@@ -308,7 +269,6 @@ function pool(){
   });
 }
 
-/* ---------- 共用：一題的內容 ---------- */
 function subChoices(d){
   const answers = d.subs.map(s=>s.a);
   if(answers.every(a=>a==='O'||a==='X')) return ['O','X'];
@@ -317,9 +277,41 @@ function subChoices(d){
   return 'ABCDE'.slice(0,'ABCDE'.indexOf(letters[letters.length-1])+1).split('');
 }
 
-function renderOptions(d, qt){
+function isCorrect(d){
+  if(!isOpen(d) || S.skipped[d.id]) return null;
+  const picked = S.pick[d.id];
+  if(d.type==='group'){
+    if(!picked) return null;
+    return d.subs.every((s,i)=> String(picked[i]||'').toUpperCase() === String(s.a).toUpperCase());
+  }
+  const want = ansKeys(d.a).sort().join('');
+  const got = (picked||[]).slice().sort().join('');
+  return want===got && want!=='';
+}
+
+function readyToCheck(d){
+  const picked = S.pick[d.id];
+  if(d.type==='group') return picked && d.subs.every((s,i)=>!!picked[i]);
+  return (picked||[]).length>0;
+}
+
+/* ---------- 一個題目的 HTML ---------- */
+function renderQuestion(d, opts){
+  opts = opts || {};
+  const open = isOpen(d);
+  const show = opts.showAnswers ? true : open;
   const picked = S.pick[d.id] || (d.type==='group' ? {} : []);
   const out = [];
+  const typeLabel = d.type==='group' ? '複合題' : (isMulti(d) ? '複選' : '單選');
+
+  out.push('<article class="qcard" data-id="'+d.id+'">');
+  out.push('<div class="qhead"><span class="qid">Q'+d.id+'</span>'
+    + '<span class="tag z'+d.zone+'">'+ZSHORT[d.zone]+'</span>'
+    + '<span class="tag">'+typeLabel+'</span>'
+    + (opts.showAnswers ? '<span class="ansline">答案：<b>'+esc(answerText(d))+'</b></span>' : '')
+    + '</div>');
+  out.push('<p class="qtext">'+esc(d.q)+'</p>');
+
   if(d.type==='group'){
     const choices = subChoices(d);
     d.subs.forEach((s,si)=>{
@@ -328,188 +320,233 @@ function renderOptions(d, qt){
       out.push('<div class="chips-ans">');
       const list = s.options ? s.options.map(o=>({k:o.slice(0,1), t:o})) : choices.map(c=>({k:c,t:c}));
       list.forEach(o=>{
-        let cls = 'ca';
-        if(s.options) cls += ' long';
-        if(pv===o.k) cls += ' sel';
-        if(qt.reveal){
-          if(o.k===s.a) cls += ' correct';
-          else if(pv===o.k) cls += ' wrong';
+        let cls='ca' + (s.options ? ' long' : '');
+        if(pv===o.k) cls+=' sel';
+        if(show){
+          if(o.k===s.a) cls+=' correct';
+          else if(pv===o.k) cls+=' wrong';
         }
-        out.push('<button class="'+cls+'" data-sub="'+si+'" data-key="'+esc(o.k)+'">'+esc(o.t)+'</button>');
+        out.push('<button class="'+cls+'" data-sub="'+si+'" data-key="'+esc(o.k)+'"'+(show?' disabled':'')+'>'+esc(o.t)+'</button>');
       });
       out.push('</div></div>');
     });
   } else {
+    const correctKeys = ansKeys(d.a);
     d.opts.forEach((o,i)=>{
       const k = String.fromCharCode(65+i);
-      const correct = ansKeys(d.a).includes(k);
       const sel = (picked||[]).includes(k);
-      let cls = 'opt';
-      if(sel) cls += ' sel';
-      if(qt.reveal && correct) cls += ' correct';
-      else if(qt.reveal && sel) cls += ' wrong';
-      out.push('<button class="'+cls+'" data-opt="'+k+'">'
+      const right = correctKeys.includes(k);
+      let cls='opt';
+      if(sel) cls+=' sel';
+      if(show){ if(right) cls+=' correct'; else if(sel) cls+=' wrong'; }
+      out.push('<button class="'+cls+'" data-opt="'+k+'"'+(show?' disabled':'')+'>'
         + '<span class="mk'+(isMulti(d)?' cb':'')+'"></span>'
         + '<span class="k">'+k+'</span><span class="tx">'+esc(o)+'</span>'
-        + (qt.reveal && correct ? '<span class="badge ok">答案</span>' : '')
-        + (qt.reveal && sel && !correct ? '<span class="badge no">你的選擇</span>' : '')
+        + (show && right ? '<span class="badge ok">正確</span>' : '')
+        + (show && sel && !right ? '<span class="badge no">你選的</span>' : '')
         + '</button>');
     });
+    if(isMulti(d) && !show) out.push('<p class="hint">複選題，需選 '+correctKeys.length+' 個，選好後按「確認」。</p>');
   }
-  if(d.type!=='group' && isMulti(d)){
-    out.push('<p class="hint">複選題，需選 '+ansKeys(d.a).length+' 個答案</p>');
+
+  /* 動作區（僅逐題模式） */
+  if(!show){
+    if(d.type==='group' || isMulti(d)){
+      out.push('<div class="actions"><button class="btn primary" data-act="check"'
+        + (readyToCheck(d)?'':' disabled')+'>確認答案</button></div>');
+    } else {
+      out.push('<p class="hint">點選一個選項，立即看對錯。</p>');
+    }
   }
+
+  /* 結果與解析 */
+  if(show){
+    if(!opts.showAnswers){
+      const c = isCorrect(d);
+      if(S.skipped[d.id]){
+        out.push('<div class="verdict skip">已顯示答案 <small>本題未計分</small></div>');
+      } else if(c===true){
+        out.push('<div class="verdict ok">✓ 答對了 <small>答案：'+esc(answerText(d))+'</small></div>');
+      } else if(c===false){
+        out.push('<div class="verdict no">✗ 答錯了 <small>正確答案：'+esc(answerText(d))+'</small></div>');
+      }
+    }
+    if(d.exp){
+      if(opts.showAnswers){
+        out.push('<details class="exp" open><summary>解析</summary><p>'+esc(d.exp)+'</p>'
+          + (d.note ? '<p class="note">備註：'+esc(d.note)+'</p>' : '') + '</details>');
+      } else {
+        out.push('<div class="exp"><p><b>解析：</b>'+esc(d.exp)+'</p>'
+          + (d.note ? '<p class="note">備註：'+esc(d.note)+'</p>' : '') + '</div>');
+      }
+    }
+    if(!opts.showAnswers && opts.allowRetry !== false){
+      out.push('<div class="actions"><button class="btn ghost" data-act="retry">重做本題</button></div>');
+    }
+  }
+  out.push('</article>');
   return out.join('');
 }
 
 function answerText(d){
   if(d.type==='group') return d.subs.map((s,i)=>'('+(i+1)+') '+s.a).join('　');
-  return ansKeys(d.a).join('');
+  return ansKeys(d.a).join('、');
 }
 
-function renderExp(d, kind){
-  if(!d.exp) return '';
-  if(kind==='fill'){
-    return '<div class="exp"><p><b>解析：</b>'+esc(d.exp)+'</p>'
-      + (d.note ? '<p class="note">備註：'+esc(d.note)+'</p>' : '') + '</div>';
+/* ---------- 事件：選項與動作（單一委派監聽，避免重複綁定） ---------- */
+function handleCardClick(e, d){
+  const b = e.target.closest('button');
+  if(!b) return;
+  const card = b.closest('.qcard');
+  if(b.dataset.act === 'retry'){ retry(d); return; }
+  if(isOpen(d)) return;
+  if(b.dataset.opt){
+    const k = b.dataset.opt;
+    if(isMulti(d)){
+      let cur = S.pick[d.id] || [];
+      cur = cur.includes(k) ? cur.filter(x=>x!==k) : [...cur,k];
+      S.pick[d.id] = cur;
+      b.classList.toggle('sel', cur.includes(k));
+      syncCheck(card, d);
+    } else {
+      S.pick[d.id] = [k];
+      S.open[d.id] = true;
+      refresh();
+    }
+    return;
   }
-  return '<details class="exp" open><summary>解析</summary><p>'+esc(d.exp)+'</p>'
-      + (d.note ? '<p class="note">備註：'+esc(d.note)+'</p>' : '') + '</details>';
+  if(b.dataset.sub!=null){
+    const si = +b.dataset.sub;
+    const cur = Object.assign({}, S.pick[d.id] || {});
+    cur[si] = b.dataset.key;
+    S.pick[d.id] = cur;
+    const group = b.closest('.chips-ans');
+    if(group){ group.querySelectorAll('.ca').forEach(x=>x.classList.toggle('sel', x===b)); }
+    syncCheck(card, d);
+    return;
+  }
+  if(b.dataset.act === 'check'){
+    if(readyToCheck(d)){ S.open[d.id] = true; refresh(); }
+  }
 }
 
-/* ---------- 逐題模式 ---------- */
+function syncCheck(card, d){
+  const btn = card && card.querySelector('[data-act="check"]');
+  if(btn) btn.disabled = !readyToCheck(d);
+}
+
+function retry(d){
+  delete S.pick[d.id]; delete S.open[d.id]; delete S.skipped[d.id];
+  refresh();
+}
+
+/* ---------- 逐題 ---------- */
 function renderQuiz(){
   const list = pool();
   const box = $('#quizCard');
-  if(!list.length){ box.innerHTML = '<div class="empty">沒有符合條件的題目</div>'; updateNav(); return; }
+  if(!list.length){ box.innerHTML = '<div class="empty">沒有符合條件的題目</div>'; syncNav(list); return; }
   if(S.idx > list.length-1) S.idx = list.length-1;
   if(S.idx < 0) S.idx = 0;
   const d = list[S.idx];
-  const typeLabel = d.type==='group' ? '複合題' : (isMulti(d) ? '複選' : '單選');
-  box.innerHTML =
-    '<article class="qcard">'
-    + '<div class="qhead"><span class="qid">Q'+d.id+'</span>'
-    + '<span class="tag z'+d.zone+'">'+ZSHORT[d.zone]+'</span>'
-    + '<span class="tag">'+typeLabel+'</span>'
-    + '<span class="ansline">答案：<b>'+esc(answerText(d))+'</b></span></div>'
-    + '<p class="qtext">'+esc(d.q)+'</p>'
-    + '<div class="opts" id="optBox">'+renderOptions(d,{reveal:S.ans})+'</div>'
-    + renderExp(d,'fill')
-    + '</article>';
-
-  $('#optBox').addEventListener('click', e=>{
-    const b = e.target.closest('button'); if(!b) return;
-    if(b.dataset.opt){
-      const k = b.dataset.opt;
-      let cur = S.pick[d.id] || [];
-      if(isMulti(d)) cur = cur.includes(k) ? cur.filter(x=>x!==k) : [...cur,k];
-      else cur = (cur[0]===k && !S.ans) ? [] : [k];
-      S.pick[d.id] = cur;
-    } else if(b.dataset.sub!=null){
-      const si = +b.dataset.sub;
-      let cur = S.pick[d.id] || {};
-      cur = Object.assign({}, cur); cur[si] = b.dataset.key;
-      S.pick[d.id] = cur;
-    }
-    renderQuiz();
-  });
-
+  box.innerHTML = renderQuestion(d, {allowRetry:true});
   $('#qCounter').textContent = (S.idx+1)+' / '+list.length;
   $('#qBar').style.width = ((S.idx+1)/list.length*100)+'%';
-  $('#qZone').textContent = ZSHORT[d.zone];
-  updateNav();
+  syncNav(list);
 }
 
-function updateNav(){
-  const list = pool();
+function syncNav(list){
+  list = list || pool();
   $('#navCnt').textContent = list.length ? (S.idx+1)+' / '+list.length : '0 / 0';
   $('#btnPrev').disabled = S.idx<=0;
   $('#btnNext').disabled = S.idx>=list.length-1;
-  $('#btnReveal').textContent = S.ans ? '隱藏答案' : '顯示答案';
-  $('#btnReveal').classList.toggle('on', S.ans);
+  const d = list[S.idx];
+  $('#btnReveal').textContent = d && isOpen(d) ? '已顯示' : '看答案';
+  $('#btnReveal').disabled = !d || isOpen(d);
+  const answered = DATA.filter(x=>isOpen(x) && !S.skipped[x.id]).length;
+  const right = DATA.filter(x=>isCorrect(x)===true).length;
+  $('#qScore').textContent = '已答 '+answered+' ・ 答對 '+right;
 }
 
-/* ---------- 整頁模式 ---------- */
+/* ---------- 整頁（答案標示版） ---------- */
 function renderList(){
   const view = $('#viewList');
   const list = pool();
   if(!list.length){ view.innerHTML = '<div class="empty">沒有符合條件的題目</div>'; return; }
-  let html = '';
+  let html = '<div class="strip">共 80 題，正確答案以選取狀態標示；每題解析可單獨展開，或用上方「解析」按鈕全部收合。</div>';
   [1,2,3,4].forEach(z=>{
     const items = list.filter(d=>d.zone===z);
     if(!items.length) return;
     html += '<h2 class="zone-title">'+ZFULL[z]+'<small>'+items.length+' 題</small></h2>';
-    items.forEach(d=>{
-      const typeLabel = d.type==='group' ? '複合題' : (isMulti(d) ? '複選' : '單選');
-      html += '<article class="qcard">'
-        + '<div class="qhead"><span class="qid">Q'+d.id+'</span>'
-        + '<span class="tag z'+d.zone+'">'+ZSHORT[d.zone]+'</span>'
-        + '<span class="tag">'+typeLabel+'</span>'
-        + '<span class="ansline">答案：<b>'+esc(answerText(d))+'</b></span></div>'
-        + '<p class="qtext">'+esc(d.q)+'</p>'
-        + '<div class="opts">'+renderOptions(d,{reveal:true})+renderExp(d,'details')
-        + '</article>';
-    });
+    items.forEach(d=>{ html += renderQuestion(d, {showAnswers:true}); });
   });
   view.innerHTML = html;
 }
 
-/* ---------- 切換與事件 ---------- */
-function setMode(mode, push){
+function refresh(){
+  if(S.mode==='quiz') renderQuiz(); else renderList();
+  if(S.mode==='quiz') syncNav();
+}
+
+/* ---------- 切換 ---------- */
+function setMode(mode){
   S.mode = mode;
   document.body.classList.toggle('quiz-mode', mode==='quiz');
   document.body.classList.toggle('list-mode', mode==='list');
   $('#tabQuiz').classList.toggle('on', mode==='quiz');
   $('#tabList').classList.toggle('on', mode==='list');
-  if(mode==='quiz') renderQuiz(); else renderList();
-  if(push!==false){ try{ history.replaceState(null,'','#'+mode); }catch(e){} }
-  try{ localStorage.setItem('ccs.mode', mode); }catch(e){}
+  refresh();
+  try{ history.replaceState(null,'','#'+mode); }catch(e){}
   window.scrollTo({top:0,behavior:'instant'});
-}
-
-function applyToggles(){
-  document.body.classList.toggle('no-ans', !S.ans);
-  document.body.classList.toggle('no-exp', !S.exp);
-  $('#btnAns').classList.toggle('on', S.ans);
-  $('#btnExp').classList.toggle('on', S.exp);
-  $('#btnAns').textContent = S.ans ? '答案' : '答案：關';
-  $('#btnExp').textContent = S.exp ? '解析' : '解析：關';
 }
 
 $('#tabQuiz').addEventListener('click', ()=>setMode('quiz'));
 $('#tabList').addEventListener('click', ()=>setMode('list'));
 
+/* 卡片內的點擊一律走這裡（事件委派，只綁一次） */
+$('#viewQuiz').addEventListener('click', e=>{
+  const card = e.target.closest('.qcard');
+  if(!card) return;
+  const d = DATA.find(x=>String(x.id)===String(card.dataset.id));
+  if(d) handleCardClick(e, d);
+});
+
 $('#zoneChips').addEventListener('click', e=>{
   const b = e.target.closest('.chip'); if(!b) return;
   S.zone = b.dataset.zone;
   document.querySelectorAll('#zoneChips .chip').forEach(c=>c.classList.toggle('on', c===b));
-  S.idx = 0;
-  S.mode==='quiz' ? renderQuiz() : renderList();
+  S.idx = 0; refresh();
 });
 
 let kwTimer;
 $('#kw').addEventListener('input', e=>{
   clearTimeout(kwTimer);
-  kwTimer = setTimeout(()=>{
-    S.kw = e.target.value;
-    S.idx = 0;
-    S.mode==='quiz' ? renderQuiz() : renderList();
-  }, 160);
+  kwTimer = setTimeout(()=>{ S.kw = e.target.value; S.idx = 0; refresh(); }, 160);
 });
 
-$('#btnAns').addEventListener('click', ()=>{ S.ans = !S.ans; applyToggles(); S.mode==='quiz' ? renderQuiz() : renderList(); });
-$('#btnExp').addEventListener('click', ()=>{ S.exp = !S.exp; applyToggles(); if(S.mode==='list'){ document.querySelectorAll('#viewList details.exp').forEach(d=>d.open = S.exp); } });
+$('#btnReset').addEventListener('click', ()=>{
+  if(!confirm('清除所有作答並重新開始？')) return;
+  S.pick = {}; S.open = {}; S.skipped = {}; S.idx = 0; refresh();
+});
 $('#btnPrint').addEventListener('click', ()=>window.print());
+
+$('#btnExp').addEventListener('click', function(){
+  const hidden = document.body.classList.toggle('no-exp');
+  this.classList.toggle('on', !hidden);
+  this.textContent = hidden ? '解析：關' : '解析';
+});
 
 $('#btnPrev').addEventListener('click', ()=>{ if(S.idx>0){ S.idx--; renderQuiz(); window.scrollTo({top:0,behavior:'instant'}); } });
 $('#btnNext').addEventListener('click', ()=>{ const l=pool(); if(S.idx<l.length-1){ S.idx++; renderQuiz(); window.scrollTo({top:0,behavior:'instant'}); } });
-$('#btnReveal').addEventListener('click', ()=>{ S.ans = !S.ans; applyToggles(); renderQuiz(); });
+$('#btnReveal').addEventListener('click', ()=>{
+  const list = pool(); const d = list[S.idx]; if(!d || isOpen(d)) return;
+  S.skipped[d.id] = true; S.open[d.id] = true; refresh();
+});
 
 document.addEventListener('keydown', e=>{
   if(S.mode!=='quiz') return;
   if(e.key==='ArrowLeft'){ $('#btnPrev').click(); }
   if(e.key==='ArrowRight'){ $('#btnNext').click(); }
-  if(e.key===' '){ e.preventDefault(); $('#btnReveal').click(); }
+  if(e.key===' '){ e.preventDefault(); const list=pool(); const d=list[S.idx]; if(d && !readyToCheck(d)) $('#btnReveal').click(); }
 });
 
 /* 手機左右滑動 */
@@ -523,13 +560,12 @@ $('#viewQuiz').addEventListener('touchend', e=>{
   }
 }, {passive:true});
 
-/* 下滑時收合考綱列（僅逐題模式） */
-let rafPending = false;
+/* 下滑時收合考綱列 */
+let rafPending=false;
 window.addEventListener('scroll', ()=>{
-  if(rafPending) return;
-  rafPending = true;
+  if(rafPending) return; rafPending=true;
   requestAnimationFrame(()=>{
-    rafPending = false;
+    rafPending=false;
     const mini = window.scrollY > 80 && S.mode==='quiz';
     document.querySelector('.filters').classList.toggle('mini', mini);
   });
@@ -537,17 +573,12 @@ window.addEventListener('scroll', ()=>{
 
 /* 初始化 */
 (function init(){
-  try{
-    S.ans = localStorage.getItem('ccs.ans') !== '0';
-    S.exp = localStorage.getItem('ccs.exp') !== '0';
-  }catch(e){}
   const qs = new URLSearchParams(location.search);
-  if(qs.has('ans')) S.ans = qs.get('ans') !== '0';
-  if(qs.has('exp')) S.exp = qs.get('exp') !== '0';
-  applyToggles();
+  if(qs.has('zone') && ['all','1','2','3','4'].includes(qs.get('zone'))) S.zone = qs.get('zone');
+  document.querySelectorAll('#zoneChips .chip').forEach(c=>c.classList.toggle('on', c.dataset.zone===S.zone));
   const hash = (location.hash||'').replace('#','');
   const mode = qs.get('mode') || (hash==='list' ? 'list' : 'quiz');
-  setMode(mode, false);
+  setMode(mode);
 })();
 </script>
 </body>
